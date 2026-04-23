@@ -1,0 +1,91 @@
+import { StyleSheet } from 'react-native';
+import { Colors } from '../../assets/Colors';
+
+export const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: Colors.appBg },
+  center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  card: {
+    width: '49%',
+    height: 200,
+    borderRadius: 10,
+    elevation: 3,
+    marginBottom: 8,
+    backgroundColor: Colors.card,
+    padding: 10,
+  },
+  image: { width: 150, height: '70%', resizeMode: 'contain', marginBottom: 10 },
+  title: { fontWeight: 'bold', fontSize: 14, color: Colors.textPrimary },
+  price: {
+    color: '#000',
+    marginTop: 4,
+    fontSize: 14,
+    fontWeight: '700',
+    color: Colors.textPrimary,
+  },
+  cartbtn: {
+    fontSize: 12,
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 3,
+    paddingVertical: 3,
+    alignSelf: 'center',
+    top: 10,
+    color: Colors.textPrimary,
+  },
+  // Bottom bar
+  bottomBar: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: Colors.appBg,
+    paddingHorizontal: 20,
+    paddingTop: 16,
+    paddingBottom: 28,
+    borderTopWidth: 0.5,
+    borderTopColor: '#1A1A1A',
+  },
+  selectionRow: {
+    backgroundColor: Colors.card,
+    borderRadius: 14,
+    borderWidth: 0.5,
+    borderColor: '#1E1E1E',
+    padding: 14,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  selLabel: {
+    fontSize: 11,
+    color: Colors.textHint,
+    marginBottom: 2,
+  },
+  selName: {
+    fontSize: 14,
+    color: Colors.textPrimary,
+    fontWeight: '500',
+  },
+  selPrice: {
+    fontSize: 20,
+    color: Colors.primary,
+    fontWeight: '600',
+  },
+  bookBtn: {
+    backgroundColor: Colors.primary,
+    borderRadius: 14,
+    paddingVertical: 15,
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  bookBtnText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#0A0A0A',
+  },
+  bookHint: {
+    fontSize: 11,
+    color: '#444444',
+    textAlign: 'center',
+  },
+});

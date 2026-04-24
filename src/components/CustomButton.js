@@ -1,12 +1,13 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { navigate } from '../navigation/NavigationService';
+import { Colors } from '../assets/Colors';
 
-const CustomButton = ({ title, bgcolor, textcolor, size, thick, onPress }) => {
+const CustomButton = ({ title, size, thick, onPress, disabled }) => {
   return (
     <TouchableOpacity
       style={{
-        backgroundColor: bgcolor,
+        backgroundColor: disabled ? Colors.featureBg : Colors.primary,
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
@@ -16,10 +17,11 @@ const CustomButton = ({ title, bgcolor, textcolor, size, thick, onPress }) => {
         paddingHorizontal: 20,
       }}
       onPress={onPress}
+      disabled={disabled}
     >
       <Text
         style={{
-          color: textcolor,
+          color: disabled ? Colors.textMuted : Colors.appBg,
           fontSize: size,
           fontWeight: thick,
         }}

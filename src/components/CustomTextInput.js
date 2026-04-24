@@ -1,4 +1,11 @@
-import { View, Text, Image, TextInput,TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import React from 'react';
 
 const CustomTextInput = ({
@@ -11,27 +18,34 @@ const CustomTextInput = ({
   keyboardType,
   secureTextEntry,
   tintColor,
-  inputbg
+  inputbg,
 }) => {
   return (
-    <View style={[styles.inputbox,{backgroundColor: inputbg}]}>
-      <Image source={icon} style={{ width: 20, height: 20 ,tintColor: tintColor }} />
-
-      <TextInput
-        placeholder={placeholder}
-        placeholderTextColor={'grey'}
-        keyboardType={keyboardType}
-        secureTextEntry={secureTextEntry}
-        value={value}
-        onChangeText={onChangeText}
-        style={{ flex: 1 ,color:'#dddddd',fontWeight:'500'}}
+    <View style={[styles.inputbox, { backgroundColor: inputbg }]}>
+      <Image
+        source={icon}
+        style={{ width: 20, height: 20, tintColor: tintColor }}
       />
 
-      {rightIcon && (
-        <TouchableOpacity onPress={onRightIconPress}>
-          <Image source={rightIcon} style={{ width: 20, height: 20 }} />
-        </TouchableOpacity>
-      )}
+      <View style={{ flexDirection: 'row', gap: 2, alignItems: 'center' }}>
+        <Text style={{ color: '#dddddd', fontWeight: '500' }}>+91</Text>
+
+        <TextInput
+          placeholder={placeholder}
+          placeholderTextColor={'grey'}
+          keyboardType={keyboardType}
+          secureTextEntry={secureTextEntry}
+          value={value}
+          onChangeText={onChangeText}
+          style={{ flex: 1, color: '#dddddd', fontWeight: '500' }}
+        />
+
+        {value >0 && rightIcon && (
+          <TouchableOpacity onPress={onRightIconPress}>
+            <Image source={rightIcon} style={{ width: 15, height: 15,tintColor: tintColor }} />
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   );
 };
@@ -46,8 +60,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal:15,
-    paddingVertical:5,
+    paddingHorizontal: 15,
+    paddingVertical: 5,
     gap: 5,
     overflow: 'hidden',
   },

@@ -226,7 +226,8 @@ const Home = () => {
             </View>
 
             {/* 5th */}
-            <TouchableOpacity style={styles.card2}>
+            <TouchableOpacity style={styles.card2}
+            onPress={()=>{navigate('ReferEarn')}}>
               <Text
                 style={{
                   color: Colors.textPrimary,
@@ -246,7 +247,7 @@ const Home = () => {
                     fontSize: 20,
                   }}
                 >
-                  0
+                  50
                 </Text>
                 <Text
                   style={{
@@ -267,7 +268,7 @@ const Home = () => {
                 }}
               >
                 <Text style={{ color: '#b1b1b1', fontSize: 14 }}>
-                  Refer a friend & Earn Points
+                  Refer a friend & Earn Points!!
                 </Text>
               </View>
             </TouchableOpacity>

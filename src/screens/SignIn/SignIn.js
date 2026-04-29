@@ -16,9 +16,52 @@ import CustomTextInput from '../../components/CustomTextInput';
 import { styles } from '../SignIn/styles';
 import { Colors } from '../../assets/Colors';
 import { navigate } from '../../navigation/NavigationService';
+import { getAuth, signInWithPhoneNumber } from '@react-native-firebase/auth';
 
 const SignIn = () => {
   const [phoneNo, setPhoneNo] = useState('');
+  const [confirm, setConfirm] = useState(null);
+
+  console.log('Console from  SignIn: ', confirm);
+  // verification code (OTP - One-Time-Passcode)
+  const [code, setCode] = useState('');
+
+  // async function handleSignInWithPhoneNumber(value) {
+  //   const confirmation = await signInWithPhoneNumber(getAuth(), value);
+  //   setConfirm(confirmation);
+  // }
+
+  async function handleSignInWithPhoneNumber(value) {
+    try {
+      let cleaned = value.replace(/\D/g, '');
+
+      if (cleaned.startsWith('0')) {
+        cleaned = cleaned.substring(1);
+      }
+
+      const phone = `+91${cleaned}`;
+
+      console.log('Formatted Phone:', phone);
+
+      const confirmation = await signInWithPhoneNumber(getAuth(), phone);
+      setConfirm(confirmation);
+    } catch (error) {
+      console.log('Auth Error:', error);
+    }
+  }
+
+  async function confirmCode() {
+    try {
+      await confirm.confirm(code);
+      console.log('User signed in successfully');
+      navigate('BottomNavigator', {
+        screen: 'Home',
+      });
+    } catch (error) {
+      console.log('Invalid code:', error);
+    }
+  }
+
   return (
     <>
       <StatusBar
@@ -71,8 +114,70 @@ const SignIn = () => {
               <Text style={styles.text}>Car and Bike Care App</Text>
               <Text style={[styles.text, { fontSize: 14 }]}>Login/SignUp</Text>
             </View>
+            {!confirm ? (
+              // 📱 STEP 1: Enter Phone Number
+              <View
+                style={{
+                  flex: 2,
+                  justifyContent: 'center',
+                  gap: 20,
+                }}
+              >
+                <CustomTextInput
+                  icon={require('../../assets/icons/call.png')}
+                  rightIcon={require('../../assets/icons/close.png')}
+                  onRightIconPress={() => {
+                    setPhoneNo('');
+                  }}
+                  placeholder={'Phone Number'}
+                  keyboardType={'numeric'}
+                  value={phoneNo}
+                  onChangeText={setPhoneNo}
+                  inputbg={Colors.card}
+                  tintColor={Colors.primary}
+                />
 
-            <View
+                <CustomButton
+                  title={'Login with Phone Number'}
+                  disabled={phoneNo.replace(/\D/g, '').length !== 10}
+                  size={16}
+                  thick={'600'}
+                  onPress={() => handleSignInWithPhoneNumber(phoneNo)}
+                />
+              </View>
+            ) : (
+              // 🔐 STEP 2: Enter OTP
+              <View
+                style={{
+                  flex: 2,
+                  justifyContent: 'center',
+                  gap: 20,
+                }}
+              >
+                <TextInput
+                  placeholder="Enter OTP"
+                  keyboardType="numeric"
+                  value={code}
+                  onChangeText={setCode}
+                  style={{
+                    backgroundColor: Colors.card,
+                    padding: 12,
+                    borderRadius: 8,
+                    color: '#dddddd',
+                    fontWeight: '500',
+                    justifyContent: 'center',
+                  }}
+                />
+                <CustomButton
+                  title={'Confirm Code'}
+                  disabled={code.length < 6}
+                  size={16}
+                  thick={'600'}
+                  onPress={() => confirmCode()}
+                />
+              </View>
+            )}
+            {/* <View
               style={{
                 flex: 2,
                 justifyContent: 'center',
@@ -82,8 +187,8 @@ const SignIn = () => {
               <CustomTextInput
                 icon={require('../../assets/icons/call.png')}
                 rightIcon={require('../../assets/icons/close.png')}
-                onRightIconPress={()=>{
-                  setPhoneNo('')
+                onRightIconPress={() => {
+                  setPhoneNo('');
                 }}
                 placeholder={'Phone Number'}
                 keyboardType={'numeric'}
@@ -94,11 +199,13 @@ const SignIn = () => {
               />
               <CustomButton
                 title={'Login/Signup'}
-                disabled={phoneNo?.length <10}
+                disabled={phoneNo?.length < 10}
                 size={16}
                 thick={'600'}
+                // onPress={()=>{navigate('PhoneSignin')}}
+                onPress={() => handleSignInWithPhoneNumber(`+91${phoneNo}`)}
               />
-            </View>
+            </View> */}
           </View>
         </KeyboardAvoidingView>
         <Text

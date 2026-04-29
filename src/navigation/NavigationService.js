@@ -1,4 +1,7 @@
-import { createNavigationContainerRef } from "@react-navigation/native";
+import {
+  createNavigationContainerRef,
+  StackActions,
+} from '@react-navigation/native';
 
 export const navigationRef = createNavigationContainerRef();
 
@@ -16,4 +19,9 @@ export function goBack() {
   } else {
     console.warn('No screen to go back to');
   }
+}
+
+//For Replace()
+export function replace(name, params) {
+  navigationRef.current?.dispatch(StackActions.replace(name, params));
 }

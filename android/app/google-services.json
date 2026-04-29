@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "99488942455",
+    "project_id": "carnationapp-58289",
+    "storage_bucket": "carnationapp-58289.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99488942455:android:18f2c59ee45d8fc6e93972",
+        "android_client_info": {
+          "package_name": "com.carnation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdP6lWRpy_FyzLpqKmh-EojV1oCR25m0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

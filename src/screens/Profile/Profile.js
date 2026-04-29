@@ -10,6 +10,7 @@ import {
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '../../assets/Colors';
+import { navigate, navigationRef, replace } from '../../navigation/NavigationService';
 
 const Profile = () => {
   const ListItem = ({ label, icon }) => (
@@ -60,11 +61,13 @@ const Profile = () => {
             <View
               style={{
                 backgroundColor: Colors.primary,
-                height: 90,
-                width: 90,
+                height: 85,
+                width: 85,
                 justifyContent: 'center',
                 alignItems: 'center',
                 borderRadius: 50,
+                marginLeft:10,
+                marginTop:5
               }}
             >
               <Image
@@ -95,7 +98,7 @@ const Profile = () => {
               gap: 10,
             }}
           >
-            <View style={{ flex: 4, gap: 10 }}>
+            <View style={{ flex: 2, gap: 10 }}>
               <Text style={{ color: '#fff', fontSize: 18, fontWeight: '600' }}>
                 My Cars
               </Text>
@@ -125,7 +128,7 @@ const Profile = () => {
               <Text
                 style={{
                   color: Colors.primary,
-                  fontSize: 18,
+                  fontSize: 16,
                   fontWeight: '600',
                 }}
               >
@@ -203,7 +206,6 @@ const Profile = () => {
           <View style={{ marginLeft: 10, flex: 1 }}>
             <TouchableOpacity
               style={styles.list}
-              onPress={() => navigation.navigate('Orders')}
             >
               <ListItem
                 label="Edit Profile"
@@ -212,7 +214,6 @@ const Profile = () => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.list}
-              onPress={() => navigation.navigate('Orders')}
             >
               <ListItem
                 label="Addresses"
@@ -221,7 +222,6 @@ const Profile = () => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.list}
-              onPress={() => navigation.navigate('Orders')}
             >
               <ListItem
                 label="Payment Methods"
@@ -230,7 +230,6 @@ const Profile = () => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.list}
-              onPress={() => navigation.navigate('Orders')}
             >
               <ListItem
                 label="Notification"
@@ -239,7 +238,6 @@ const Profile = () => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.list}
-              onPress={() => navigation.navigate('Orders')}
             >
               <ListItem
                 label="Help"
@@ -248,7 +246,7 @@ const Profile = () => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.list}
-              onPress={() => navigation.navigate('Orders')}
+              onPress={() => replace("SignIn", { replace: true })}
             >
               <ListItem
                 label="Logout"

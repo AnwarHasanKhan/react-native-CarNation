@@ -48,7 +48,6 @@ const BottomNavigator = () => {
         tabBarLabelStyle: {
           fontSize: 12,
           marginBottom: 5,
-
         },
       }}
     >
@@ -60,7 +59,7 @@ const BottomNavigator = () => {
             return (
               <Image
                 source={require('../../assets/icons/home.png')}
-                style={{ width: size, height: size , tintColor: color }}
+                style={{ width: size, height: size, tintColor: color }}
               />
             );
           },
@@ -74,7 +73,7 @@ const BottomNavigator = () => {
             return (
               <Image
                 source={require('../../assets/icons/retention-bonus.png')}
-                style={{ width: size, height: size , tintColor: color }}
+                style={{ width: size, height: size, tintColor: color }}
               />
             );
           },
@@ -88,7 +87,7 @@ const BottomNavigator = () => {
             return (
               <Image
                 source={require('../../assets/icons/user.png')}
-                style={{ width: size, height: size , tintColor: color }}
+                style={{ width: size, height: size, tintColor: color }}
               />
             );
           },

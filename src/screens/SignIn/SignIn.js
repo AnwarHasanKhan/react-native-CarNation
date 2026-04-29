@@ -26,11 +26,6 @@ const SignIn = () => {
   // verification code (OTP - One-Time-Passcode)
   const [code, setCode] = useState('');
 
-  // async function handleSignInWithPhoneNumber(value) {
-  //   const confirmation = await signInWithPhoneNumber(getAuth(), value);
-  //   setConfirm(confirmation);
-  // }
-
   async function handleSignInWithPhoneNumber(value) {
     try {
       let cleaned = value.replace(/\D/g, '');
@@ -54,9 +49,12 @@ const SignIn = () => {
     try {
       await confirm.confirm(code);
       console.log('User signed in successfully');
+      
       navigate('BottomNavigator', {
         screen: 'Home',
       });
+      setConfirm('')
+      setPhoneNo('')
     } catch (error) {
       console.log('Invalid code:', error);
     }
@@ -138,7 +136,7 @@ const SignIn = () => {
                 />
 
                 <CustomButton
-                  title={'Login with Phone Number'}
+                  title={'Login with OTP'}
                   disabled={phoneNo.replace(/\D/g, '').length !== 10}
                   size={16}
                   thick={'600'}
@@ -146,7 +144,6 @@ const SignIn = () => {
                 />
               </View>
             ) : (
-              // 🔐 STEP 2: Enter OTP
               <View
                 style={{
                   flex: 2,
@@ -154,20 +151,30 @@ const SignIn = () => {
                   gap: 20,
                 }}
               >
-                <TextInput
-                  placeholder="Enter OTP"
-                  keyboardType="numeric"
-                  value={code}
-                  onChangeText={setCode}
+                <View
                   style={{
-                    backgroundColor: Colors.card,
-                    padding: 12,
-                    borderRadius: 8,
-                    color: '#dddddd',
-                    fontWeight: '500',
-                    justifyContent: 'center',
+                    width: '85%',
+                    borderWidth: 1,
+                    borderRadius: 10,
+                    alignSelf: 'center',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    paddingHorizontal: 15,
+                    paddingVertical: 5,
+                    gap: 5,
+                    overflow: 'hidden',
+                    backgroundColor:Colors.card
                   }}
-                />
+                >
+                  <TextInput
+                    placeholder="Enter OTP"
+                    placeholderTextColor={'grey'}
+                    keyboardType="numeric"
+                    value={code}
+                    onChangeText={setCode}
+                    style={{ flex: 1, color: '#dddddd', fontWeight: '500' }}
+                  />
+                </View>
                 <CustomButton
                   title={'Confirm Code'}
                   disabled={code.length < 6}
@@ -177,35 +184,6 @@ const SignIn = () => {
                 />
               </View>
             )}
-            {/* <View
-              style={{
-                flex: 2,
-                justifyContent: 'center',
-                gap: 20,
-              }}
-            >
-              <CustomTextInput
-                icon={require('../../assets/icons/call.png')}
-                rightIcon={require('../../assets/icons/close.png')}
-                onRightIconPress={() => {
-                  setPhoneNo('');
-                }}
-                placeholder={'Phone Number'}
-                keyboardType={'numeric'}
-                value={phoneNo}
-                onChangeText={setPhoneNo}
-                inputbg={Colors.card}
-                tintColor={Colors.primary}
-              />
-              <CustomButton
-                title={'Login/Signup'}
-                disabled={phoneNo?.length < 10}
-                size={16}
-                thick={'600'}
-                // onPress={()=>{navigate('PhoneSignin')}}
-                onPress={() => handleSignInWithPhoneNumber(`+91${phoneNo}`)}
-              />
-            </View> */}
           </View>
         </KeyboardAvoidingView>
         <Text

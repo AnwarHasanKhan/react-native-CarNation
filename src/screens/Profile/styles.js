@@ -1,0 +1,70 @@
+import { StyleSheet } from 'react-native';
+import { Colors } from '../../assets/Colors';
+
+export const styles = StyleSheet.create({
+  header: {
+    width: '100%',
+    height: 50,
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderBottomWidth: 0.5,
+  },
+  headerText: { fontSize: 20, fontWeight: 'bold' },
+  settingsBtn: {
+    width: 30,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  settingsIcon: { width: 23, height: 23 },
+  profileContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+    marginTop: 20,
+    gap: 15,
+  },
+  profileImage: {
+    width: 80,
+    height: 80,
+    borderRadius: 50,
+    backgroundColor: Colors.textPrimary,
+  },
+  nameText: { fontSize: 20, fontWeight: '600' },
+  mobileText: { fontSize: 14, fontWeight: '400' },
+  emailText: { fontSize: 14, color: '#333' },
+  list: {
+    borderBottomWidth: 0.5,
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    paddingLeft: 15,
+    borderRadius: 10,
+  },
+  listRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginRight: 10,
+  },
+  listIcon: { width: 22, height: 22, tintColor: Colors.primary },
+  listIcon2: { width: 35, height: 35, tintColor: Colors.primary },
+  listLabel: { fontSize: 16, color: '#fff' },
+  nextIcon: { width: 24, height: 24, tintColor: '#fff' },
+  logoutContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  logoutBtn: {
+    borderWidth: 1,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+    marginTop: 200,
+    backgroundColor: '#000',
+  },
+  logoutText: { fontSize: 20, fontWeight: '700', color: '#fff' },
+});

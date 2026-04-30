@@ -2,21 +2,23 @@ import {
   Image,
   ScrollView,
   StatusBar,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { styles } from './styles';
 import { Colors } from '../../assets/Colors';
-import {
-  navigate,
-  navigationRef,
-  replace,
-} from '../../navigation/NavigationService';
+import { navigate, replace } from '../../navigation/NavigationService';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCar, removeCar } from '../../redux/slice/carSlice';
 
 const Profile = () => {
+  const dispatch = useDispatch();
+
+  const name = useSelector(state => state.carlist?.name);
+  const license = useSelector(state => state.carlist?.license);
   const ListItem = ({ label, icon }) => (
     <View style={styles.listRow}>
       <View
@@ -92,7 +94,6 @@ const Profile = () => {
               <Text style={{ color: Colors.textPrimary }}>userInfo</Text>
             </View>
           </View>
-          {/*  */}
           <View
             style={{
               flex: 1,
@@ -108,7 +109,7 @@ const Profile = () => {
               </Text>
               <View
                 style={{
-                  backgroundColor: '#5d5d5d',
+                  backgroundColor: Colors.card,
                   borderRadius: 10,
                   padding: 10,
                   flexDirection: 'row',
@@ -125,12 +126,12 @@ const Profile = () => {
                   <Text
                     style={{ color: Colors.textPrimary, fontWeight: '600' }}
                   >
-                    Hyundai i10 nios
+                    Car: {name}
                   </Text>
                   <Text
                     style={{ color: Colors.textPrimary, fontWeight: '600' }}
                   >
-                    License: UP31BR0393
+                    License: {license}
                   </Text>
                   <Text
                     style={{ color: Colors.textPrimary, fontWeight: '600' }}
@@ -138,6 +139,11 @@ const Profile = () => {
                     Default
                   </Text>
                 </View>
+                
+                  <Image
+                    source={require('../../assets/icons/close.png')}
+                    style={{ height: 15, width: 15, tintColor: Colors.primary,alignSelf:'flex-start' }}
+                  />
               </View>
             </View>
             <View style={{ flex: 1, alignItems: 'flex-end', gap: 10 }}>
@@ -148,7 +154,7 @@ const Profile = () => {
                   fontWeight: '600',
                 }}
               >
-                + Add Car
+                Add Vehicle
               </Text>
 
               <View
@@ -165,12 +171,15 @@ const Profile = () => {
                   borderStyle: 'dashed',
                 }}
               >
-                <View
+                <TouchableOpacity
                   style={{
                     flex: 1,
                     gap: 5,
                     justifyContent: 'center',
                     alignItems: 'center',
+                  }}
+                  onPress={() => {
+                    dispatch(addCar());
                   }}
                 >
                   <Text
@@ -178,11 +187,11 @@ const Profile = () => {
                   >
                     +Add {'\n'}New Car
                   </Text>
-                </View>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
-          <View style={{ gap: 15, padding: 10 }}>
+          <View style={{ gap: 15, padding: 10, marginBottom: 5 }}>
             <Text style={{ color: '#fff', fontSize: 18, fontWeight: '600' }}>
               Quick Actions
             </Text>
@@ -193,17 +202,13 @@ const Profile = () => {
                 justifyContent: 'space-evenly',
               }}
             >
-              <TouchableOpacity
-              // onPress={() => navigation.navigate('Orders')}
-              >
+              <TouchableOpacity onPress={() => navigate('PackageScreen')}>
                 <ListItem2
                   label="Car Wash"
                   icon={require('../../assets/icons/car-wash.png')}
                 />
               </TouchableOpacity>
-              <TouchableOpacity
-              // onPress={() => navigation.navigate('Orders')}
-              >
+              <TouchableOpacity onPress={() => navigate('UD')}>
                 <ListItem2
                   label="My Booking"
                   icon={require('../../assets/icons/sticky-notes.png')}
@@ -220,7 +225,7 @@ const Profile = () => {
             </View>
           </View>
 
-          <View style={{flex: 1 }}>
+          <View style={{ flex: 1 }}>
             <TouchableOpacity style={styles.list}>
               <ListItem
                 label="Edit Profile"
@@ -245,9 +250,10 @@ const Profile = () => {
                 icon={require('../../assets/icons/notification.png')}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.list}
-            
-              onPress={() => navigate('HelpScreen')}>
+            <TouchableOpacity
+              style={styles.list}
+              onPress={() => navigate('HelpScreen')}
+            >
               <ListItem
                 label="Help"
                 icon={require('../../assets/icons/help.png')}
@@ -270,71 +276,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-const styles = StyleSheet.create({
-  header: {
-    width: '100%',
-    height: 50,
-    padding: 10,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderBottomWidth: 0.5,
-  },
-  headerText: { fontSize: 20, fontWeight: 'bold' },
-  settingsBtn: {
-    width: 30,
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  settingsIcon: { width: 23, height: 23 },
-  profileContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 10,
-    marginTop: 20,
-    gap: 15,
-  },
-  profileImage: {
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-    backgroundColor: Colors.textPrimary,
-  },
-  nameText: { fontSize: 20, fontWeight: '600' },
-  mobileText: { fontSize: 14, fontWeight: '400' },
-  emailText: { fontSize: 14, color: '#333' },
-  list: {
-    borderBottomWidth: 0.5,
-    width: '100%',
-    height: 50,
-    justifyContent: 'center',
-    paddingLeft: 15,
-    borderRadius: 10,
-  },
-  listRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginRight: 10,
-  },
-  listIcon: { width: 22, height: 22, tintColor: Colors.primary },
-  listIcon2: { width: 35, height: 35, tintColor: Colors.primary },
-  listLabel: { fontSize: 16, color: '#fff' },
-  nextIcon: { width: 24, height: 24, tintColor: '#fff' },
-  logoutContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 15,
-  },
-  logoutBtn: {
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    marginTop: 200,
-    backgroundColor: '#000',
-  },
-  logoutText: { fontSize: 20, fontWeight: '700', color: '#fff' },
-});

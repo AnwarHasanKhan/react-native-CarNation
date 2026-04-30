@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Carousel from '../../components/Carousel/Carousel';
 import CustomButton from '../../components/CustomButton';
@@ -24,6 +24,13 @@ const SignIn = () => {
 
   console.log('Console from  SignIn: ', confirm);
   const [code, setCode] = useState('');
+  const [otpVisible, setOTPVisible] = useState(false);
+
+   useEffect(() => {
+      setTimeout(()=>{
+        setOTPVisible(false)
+      },8000)
+    }, [otpVisible]);
 
   async function handleSignInWithPhoneNumber(value) {
     try {
@@ -39,6 +46,7 @@ const SignIn = () => {
 
       const confirmation = await signInWithPhoneNumber(getAuth(), phone);
       setConfirm(confirmation);
+      setOTPVisible(true)
     } catch (error) {
       console.log('Auth Error:', error);
     }
@@ -52,8 +60,8 @@ const SignIn = () => {
         screen: 'Home',
       });
 
-      setPhoneNo('')
-      setConfirm('')
+      setPhoneNo('');
+      setConfirm('');
     } catch (error) {
       console.log('Invalid code:', error);
     }
@@ -161,7 +169,7 @@ const SignIn = () => {
                     paddingVertical: 5,
                     gap: 5,
                     overflow: 'hidden',
-                    backgroundColor:Colors.card
+                    backgroundColor: Colors.card,
                   }}
                 >
                   <TextInput
@@ -169,6 +177,7 @@ const SignIn = () => {
                     placeholderTextColor={'grey'}
                     keyboardType="numeric"
                     value={code}
+                    autoFocus
                     onChangeText={setCode}
                     style={{ flex: 1, color: '#dddddd', fontWeight: '500' }}
                   />
@@ -184,6 +193,25 @@ const SignIn = () => {
             )}
           </View>
         </KeyboardAvoidingView>
+        {otpVisible && (
+          <View
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: Colors.card,
+              paddingHorizontal: 20,
+              paddingVertical: 10,
+              borderRadius: 20,
+              alignSelf: 'center',
+              position: 'absolute',
+              top: 60,
+            }}
+          >
+            <Text style={{ color: Colors.textPrimary, fontWeight: 'bold' }}>
+              Verfication OTP: 123456
+            </Text>
+          </View>
+        )}
         <Text
           style={{
             alignSelf: 'center',

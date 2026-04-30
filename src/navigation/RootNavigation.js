@@ -17,7 +17,7 @@ const RootNavigation = () => {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
-        screenOptions={{ headerShown: false }}
+        screenOptions={{ headerShown: false, animation:'fade'}}
         initialRouteName="SplashScreen"
       >
         <Stack.Screen name="SplashScreen" component={SplashScreen} />

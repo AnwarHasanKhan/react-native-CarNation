@@ -23,7 +23,6 @@ const SignIn = () => {
   const [confirm, setConfirm] = useState(null);
 
   console.log('Console from  SignIn: ', confirm);
-  // verification code (OTP - One-Time-Passcode)
   const [code, setCode] = useState('');
 
   async function handleSignInWithPhoneNumber(value) {
@@ -49,12 +48,12 @@ const SignIn = () => {
     try {
       await confirm.confirm(code);
       console.log('User signed in successfully');
-      
       navigate('BottomNavigator', {
         screen: 'Home',
       });
-      setConfirm('')
+
       setPhoneNo('')
+      setConfirm('')
     } catch (error) {
       console.log('Invalid code:', error);
     }
@@ -113,7 +112,6 @@ const SignIn = () => {
               <Text style={[styles.text, { fontSize: 14 }]}>Login/SignUp</Text>
             </View>
             {!confirm ? (
-              // 📱 STEP 1: Enter Phone Number
               <View
                 style={{
                   flex: 2,
@@ -176,7 +174,7 @@ const SignIn = () => {
                   />
                 </View>
                 <CustomButton
-                  title={'Confirm Code'}
+                  title={'Enter OTP'}
                   disabled={code.length < 6}
                   size={16}
                   thick={'600'}
@@ -188,7 +186,7 @@ const SignIn = () => {
         </KeyboardAvoidingView>
         <Text
           style={{
-            alignSelf: 'flex-end',
+            alignSelf: 'center',
             textAlign: 'center',
             marginHorizontal: 70,
             fontSize: 12,

@@ -10,7 +10,11 @@ import {
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '../../assets/Colors';
-import { navigate, navigationRef, replace } from '../../navigation/NavigationService';
+import {
+  navigate,
+  navigationRef,
+  replace,
+} from '../../navigation/NavigationService';
 
 const Profile = () => {
   const ListItem = ({ label, icon }) => (
@@ -66,8 +70,8 @@ const Profile = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 borderRadius: 50,
-                marginLeft:10,
-                marginTop:5
+                marginLeft: 10,
+                marginTop: 5,
               }}
             >
               <Image
@@ -114,13 +118,25 @@ const Profile = () => {
                 }}
               >
                 <Image
-                  source={require('../../assets/icons/car-wash.png')}
-                  style={{ height: 30, width: 30 }}
+                  source={require('../../assets/icons/car.png')}
+                  style={{ height: 30, width: 30, tintColor: '#cdcdcd' }}
                 />
                 <View style={{ flex: 1, gap: 5 }}>
-                  <Text style={{ color: Colors.textPrimary }}>CarName</Text>
-                  <Text style={{ color: Colors.textPrimary }}>License</Text>
-                  <Text style={{ color: Colors.textPrimary }}>CarBox</Text>
+                  <Text
+                    style={{ color: Colors.textPrimary, fontWeight: '600' }}
+                  >
+                    Hyundai i10 nios
+                  </Text>
+                  <Text
+                    style={{ color: Colors.textPrimary, fontWeight: '600' }}
+                  >
+                    License: UP31BR0393
+                  </Text>
+                  <Text
+                    style={{ color: Colors.textPrimary, fontWeight: '600' }}
+                  >
+                    Default
+                  </Text>
                 </View>
               </View>
             </View>
@@ -157,15 +173,16 @@ const Profile = () => {
                     alignItems: 'center',
                   }}
                 >
-                  <Text style={{ color: Colors.textPrimary }}>
+                  <Text
+                    style={{ color: Colors.textPrimary, fontWeight: '600' }}
+                  >
                     +Add {'\n'}New Car
                   </Text>
                 </View>
               </View>
             </View>
           </View>
-          {/*  */}
-          <View style={{ gap: 10, padding: 10 }}>
+          <View style={{ gap: 15, padding: 10 }}>
             <Text style={{ color: '#fff', fontSize: 18, fontWeight: '600' }}>
               Quick Actions
             </Text>
@@ -203,42 +220,34 @@ const Profile = () => {
             </View>
           </View>
 
-          <View style={{ marginLeft: 10, flex: 1 }}>
-            <TouchableOpacity
-              style={styles.list}
-            >
+          <View style={{flex: 1 }}>
+            <TouchableOpacity style={styles.list}>
               <ListItem
                 label="Edit Profile"
                 icon={require('../../assets/icons/edit-text.png')}
               />
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.list}
-            >
+            <TouchableOpacity style={styles.list}>
               <ListItem
                 label="Addresses"
                 icon={require('../../assets/icons/pin.png')}
               />
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.list}
-            >
+            <TouchableOpacity style={styles.list}>
               <ListItem
                 label="Payment Methods"
                 icon={require('../../assets/icons/wallet.png')}
               />
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.list}
-            >
+            <TouchableOpacity style={styles.list}>
               <ListItem
                 label="Notification"
                 icon={require('../../assets/icons/notification.png')}
               />
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.list}
-            >
+            <TouchableOpacity style={styles.list}
+            
+              onPress={() => navigate('HelpScreen')}>
               <ListItem
                 label="Help"
                 icon={require('../../assets/icons/help.png')}
@@ -246,7 +255,7 @@ const Profile = () => {
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.list}
-              onPress={() => replace("SignIn", { replace: true })}
+              onPress={() => replace('SignIn', { replace: true })}
             >
               <ListItem
                 label="Logout"
@@ -311,7 +320,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   listIcon: { width: 22, height: 22, tintColor: Colors.primary },
-  listIcon2: { width: 30, height: 30, tintColor: Colors.primary },
+  listIcon2: { width: 35, height: 35, tintColor: Colors.primary },
   listLabel: { fontSize: 16, color: '#fff' },
   nextIcon: { width: 24, height: 24, tintColor: '#fff' },
   logoutContainer: {

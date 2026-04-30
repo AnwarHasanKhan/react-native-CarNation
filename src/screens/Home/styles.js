@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 10,
     padding: 20,
-    gap: 15,
+    gap: 10,
     elevation: 5,
     justifyContent: 'space-between',
   },
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 10,
     padding: 20,
-    gap: 20,
+    gap: 10,
     elevation: 5,
   },
   dot1: {

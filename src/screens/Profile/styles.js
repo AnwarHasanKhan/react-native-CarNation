@@ -27,6 +27,16 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     gap: 15,
   },
+  dp: {
+    backgroundColor: Colors.primary,
+    height: 85,
+    width: 85,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 50,
+    marginLeft: 10,
+    marginTop: 5,
+  },
   profileImage: {
     width: 80,
     height: 80,

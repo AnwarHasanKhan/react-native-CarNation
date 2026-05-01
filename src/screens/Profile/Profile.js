@@ -1,5 +1,6 @@
 import {
   Image,
+  Pressable,
   ScrollView,
   StatusBar,
   Text,
@@ -19,6 +20,9 @@ const Profile = () => {
 
   const name = useSelector(state => state.carlist?.name);
   const license = useSelector(state => state.carlist?.license);
+  const isDefault = useSelector(state => state.carlist.isDefault);
+  const userName = useSelector(state => state.userinfo?.userName);
+  const phoneNo = useSelector(state => state.userinfo?.phoneNo);
   const ListItem = ({ label, icon }) => (
     <View style={styles.listRow}>
       <View
@@ -64,18 +68,7 @@ const Profile = () => {
       <SafeAreaView style={{ flex: 1, backgroundColor: Colors.appBg }}>
         <ScrollView style={{ flex: 1 }}>
           <View style={styles.profileContainer}>
-            <View
-              style={{
-                backgroundColor: Colors.primary,
-                height: 85,
-                width: 85,
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 50,
-                marginLeft: 10,
-                marginTop: 5,
-              }}
-            >
+            <View style={styles.dp}>
               <Image
                 source={require('../../assets/icons/user.png')}
                 style={styles.profileImage}
@@ -89,9 +82,9 @@ const Profile = () => {
                   fontWeight: '600',
                 }}
               >
-                User Name
+                {userName}
               </Text>
-              <Text style={{ color: Colors.textPrimary }}>userInfo</Text>
+              <Text style={{ color: Colors.textPrimary }}>{phoneNo}</Text>
             </View>
           </View>
           <View
@@ -136,14 +129,42 @@ const Profile = () => {
                   <Text
                     style={{ color: Colors.textPrimary, fontWeight: '600' }}
                   >
-                    Default
+                    {isDefault && (
+                      <View
+                        style={{
+                          flex: 1,
+                          gap: 5,
+                          backgroundColor: Colors.primary,
+                          paddingHorizontal: 5,
+                          borderRadius: 5,
+                        }}
+                      >
+                        <Text
+                          style={{ color: Colors.appBg, fontWeight: '600' }}
+                        >
+                          default
+                        </Text>
+                      </View>
+                    )}
                   </Text>
                 </View>
-                
+                <Pressable
+                  onPress={() => {
+                    dispatch(removeCar());
+                  }}
+                  style={{
+                    alignSelf: 'flex-start',
+                  }}
+                >
                   <Image
                     source={require('../../assets/icons/close.png')}
-                    style={{ height: 15, width: 15, tintColor: Colors.primary,alignSelf:'flex-start' }}
+                    style={{
+                      height: 15,
+                      width: 15,
+                      tintColor: Colors.primary,
+                    }}
                   />
+                </Pressable>
               </View>
             </View>
             <View style={{ flex: 1, alignItems: 'flex-end', gap: 10 }}>
@@ -179,7 +200,7 @@ const Profile = () => {
                     alignItems: 'center',
                   }}
                   onPress={() => {
-                    dispatch(addCar());
+                    navigate('AddCarScreen');
                   }}
                 >
                   <Text
@@ -214,9 +235,7 @@ const Profile = () => {
                   icon={require('../../assets/icons/sticky-notes.png')}
                 />
               </TouchableOpacity>
-              <TouchableOpacity
-              // onPress={() => navigation.navigate('Orders')}
-              >
+              <TouchableOpacity onPress={() => navigate('Subscription')}>
                 <ListItem2
                   label="Subscription"
                   icon={require('../../assets/icons/insurance.png')}
@@ -226,13 +245,19 @@ const Profile = () => {
           </View>
 
           <View style={{ flex: 1 }}>
-            <TouchableOpacity style={styles.list}>
+            <TouchableOpacity
+              style={styles.list}
+              onPress={() => navigate('EditProfileScreen')}
+            >
               <ListItem
                 label="Edit Profile"
                 icon={require('../../assets/icons/edit-text.png')}
               />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.list}>
+            <TouchableOpacity
+              style={styles.list}
+              onPress={() => navigate('AddressScreen')}
+            >
               <ListItem
                 label="Addresses"
                 icon={require('../../assets/icons/pin.png')}

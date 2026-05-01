@@ -18,4 +18,9 @@ export const styles = StyleSheet.create({
     width:40
   },
   headertxt: { fontSize: 14, fontWeight: 'bold', color: Colors.textMuted },
+  address: {
+  fontSize: 14,
+  fontWeight: '600',
+  color: '#EEEEEE',
+}
 });

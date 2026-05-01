@@ -44,7 +44,7 @@ const Home = () => {
               padding: 10,
             }}
           >
-            <Header />
+            <Header/>
             {/* 1st */}
             <View style={[styles.card2, { backgroundColor: Colors.header }]}>
               <View>

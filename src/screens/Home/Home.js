@@ -14,6 +14,7 @@ import { Colors } from '../../assets/Colors';
 import CustomButton from '../../components/CustomButton';
 import Header from '../../components/Header/Header';
 import { PACKAGES } from '../../model/Packages';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Home = () => {
   const baseprice = PACKAGES;
@@ -44,9 +45,9 @@ const Home = () => {
               padding: 10,
             }}
           >
-            <Header/>
+            <Header />
             {/* 1st */}
-            <View style={[styles.card2, { backgroundColor: Colors.header }]}>
+            <View style={[styles.headcard, { backgroundColor: Colors.header }]}>
               <View>
                 <Text
                   style={{
@@ -81,12 +82,8 @@ const Home = () => {
                   navigate('PackageScreen');
                 }}
               />
-              <View
-                style={styles.dot1}
-              />
-              <View
-                style={styles.dot2}
-              />
+              <View style={styles.dot1} />
+              <View style={styles.dot2} />
             </View>
 
             {/* 2nd Card Row */}
@@ -122,8 +119,12 @@ const Home = () => {
                   </Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.card1, { flex: 1 }]}
-              onPress={()=>{navigate('ProductsScreen')}}>
+              <TouchableOpacity
+                style={[styles.card1, { flex: 1 }]}
+                onPress={() => {
+                  navigate('ProductsScreen');
+                }}
+              >
                 <Image
                   source={require('../../assets/icons/shopping-cart.png')}
                   style={{ width: 35, height: 35, tintColor: Colors.primary }}
@@ -142,35 +143,43 @@ const Home = () => {
             </View>
 
             {/* 3rd */}
-            <TouchableOpacity
-              style={styles.card2}
-              onPress={() => {
-                navigate('Subscription');
-              }}
+            <LinearGradient
+              useAngle={true}
+              angle={15}
+              angleCenter={{ x: 0.1, y: 0.5 }}
+              colors={['#1a1a1a', '#121212', '#192f6a']}
+              style={styles.linearGradient}
             >
-              <Image
-                source={require('../../assets/icons/insurance.png')}
-                style={{ width: 35, height: 35, tintColor: Colors.indigo }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: Colors.textPrimary,
-                    fontWeight: '500',
-                    textTransform: 'uppercase',
-                    fontSize: 20,
-                  }}
-                >
-                  MONTHLY PLANS
-                </Text>
-                <Text style={{ color: '#b1b1b1', fontSize: 14 }}>
-                  Explore all the exclusive offers
-                </Text>
-                <Text style={{ color: Colors.indigo, fontSize: 14 }}>
-                  Save your Time and Money
-                </Text>
-              </View>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.lgcard}
+                onPress={() => {
+                  navigate('Subscription');
+                }}
+              >
+                <Image
+                  source={require('../../assets/icons/insurance.png')}
+                  style={{ width: 35, height: 35, tintColor: Colors.indigo }}
+                />
+                <View>
+                  <Text
+                    style={{
+                      color: Colors.textPrimary,
+                      fontWeight: '500',
+                      textTransform: 'uppercase',
+                      fontSize: 20,
+                    }}
+                  >
+                    MONTHLY PLANS
+                  </Text>
+                  <Text style={{ color: '#b1b1b1', fontSize: 14 }}>
+                    Explore all the exclusive offers
+                  </Text>
+                  <Text style={{ color: Colors.indigo, fontSize: 14 }}>
+                    Save your Time and Money
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </LinearGradient>
 
             {/* 4th */}
             <View
@@ -226,8 +235,19 @@ const Home = () => {
             </View>
 
             {/* 5th */}
-            <TouchableOpacity style={styles.card2}
-            onPress={()=>{navigate('ReferEarn')}}>
+             <LinearGradient
+              useAngle={true}
+              angle={15}
+              angleCenter={{ x: 0.1, y: 0.1 }}
+              colors={['#1a1a1a', '#192f6a']}
+              style={styles.linearGradient}
+            >
+            <TouchableOpacity
+              style={styles.lgcard}
+              onPress={() => {
+                navigate('ReferEarn');
+              }}
+            >
               <Text
                 style={{
                   color: Colors.textPrimary,
@@ -272,6 +292,7 @@ const Home = () => {
                 </Text>
               </View>
             </TouchableOpacity>
+            </LinearGradient>
           </View>
         </ScrollView>
       </SafeAreaView>

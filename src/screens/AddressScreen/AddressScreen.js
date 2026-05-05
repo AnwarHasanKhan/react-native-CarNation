@@ -5,6 +5,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Pressable,
+  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -22,8 +23,8 @@ import { goBack } from '../../navigation/NavigationService';
 
 import {
   addAddress,
-  deleteAddress,
   clearAddress,
+  deleteAddress,
 } from '../../redux/slice/addressSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import Header2 from '../../components/Header2/Header2';
@@ -35,8 +36,7 @@ const AddressScreen = () => {
   const [selectedAddress, setSelectedAddress] = useState('');
 
   const dispatch = useDispatch();
-  const addrs = useSelector(state => state.address);
-  const screenWidth = useWindowDimensions();
+  const addresses = useSelector(state => state.address);
 
   console.log('Building:', building);
   console.log('selected:', selectedAddress);
@@ -61,7 +61,7 @@ const AddressScreen = () => {
           }}
         >
           <Image
-            source={require('../../assets/icons/back.png')}
+            source={require('../../assets/icons/down.png')}
             style={{ width: 30, height: 30, tintColor: '#fff' }}
           />
           <Text
@@ -83,11 +83,12 @@ const AddressScreen = () => {
             keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
             style={{
               justifyContent: 'center',
-              gap: 10,flex:1,
-              paddingHorizontal:20
+              gap: 10,
+              flex: 1,
+              paddingHorizontal: 20,
             }}
           >
-              <View style={[styles.inputbox, { backgroundColor: Colors.card }]}>
+            <View style={[styles.inputbox, { backgroundColor: Colors.card }]}>
               <TextInput
                 placeholder={'Enter House / Flat / Building'}
                 placeholderTextColor={'grey'}
@@ -132,7 +133,6 @@ const AddressScreen = () => {
                   setBuilding('');
                   setLocality('');
                   setCity('');
-                  goBack();
                 }}
               />
               <CustomButton
@@ -145,7 +145,62 @@ const AddressScreen = () => {
               />
             </View>
           </KeyboardAvoidingView>
-     
+
+          <View
+            style={{ gap: 10, padding: 10, flex: 1, backgroundColor: '#000' }}
+          >
+            <Text style={{ color: '#fff', fontSize: 18, fontWeight: '600' }}>
+              Saved Address
+            </Text>
+            {addresses.map((addr, index) => (
+              <TouchableOpacity
+                style={{
+                  backgroundColor: Colors.card,
+                  borderRadius: 10,
+                  padding: 20,
+                  gap: 10,
+                  elevation: 5,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    gap: 10,
+                    width: '80%',
+                  }}
+                >
+                  <Image
+                    source={require('../../assets/icons/location.png')}
+                    style={{ width: 20, height: 20, tintColor: '#fff' }}
+                  />
+                  <Text
+                    key={index}
+                    style={{
+                      fontSize: 14,
+                      fontWeight: '600',
+                      color: '#EEEEEE',
+                    }}
+                  >
+                    {[addr.building, addr.locality, addr.city]
+                      .filter(Boolean)
+                      .join(', ')}
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  onPress={() => {
+                    dispatch(deleteAddress(index));
+                  }}
+                >
+                  <Image
+                    source={require('../../assets/icons/close.png')}
+                    style={{ width: 20, height: 20, tintColor: '#fff' }}
+                  />
+                </TouchableOpacity>
+              </TouchableOpacity>
+            ))}
+          </View>
         </ImageBackground>
       </SafeAreaView>
     </>
@@ -166,6 +221,5 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     gap: 5,
     overflow: 'hidden',
-    margin: 10,
   },
 });

@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   FlatList,
   Image,
   StatusBar,
@@ -6,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styles } from './styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '../../assets/Colors';
@@ -19,12 +20,18 @@ const ProductsScreen = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+    useEffect(() => {
+      setTimeout(() => {
+        setLoading(false)
+      }, 2500);
+    }, []);
+
   const ProdScreen = usefetchProducts({ product, loading, error });
 
   const renderItem = ({ item }) => (
     <View style={styles.card}>
       <Image source={{ uri: item.images[0] }} style={styles.image} />
-      <View style={{ flexDirection: 'row',justifyContent:'space-between' }}>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <View style={{ height: '100%', width: '65%' }}>
           <Text numberOfLines={1} style={styles.title}>
             {item.title}
@@ -80,35 +87,37 @@ const ProductsScreen = () => {
         <Header2
           title={'Shop Products'}
           subtitle={'Choose best for your car'}
-          onPress={()=>{goBack()}}
+          onPress={() => {
+            goBack();
+          }}
         />
-        <View style={{ flex: 1 }}>
-          <FlatList
-            data={ProdScreen}
-            renderItem={renderItem}
-            numColumns={2}
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{ padding: 4 }}
-            columnWrapperStyle={{ justifyContent: 'space-between' }}
-            ListFooterComponent={<View style={{ height: 100 }} />}
-          />
-        </View>
-        {/* Bottom bar */}
+        {loading ? (
+          <View
+            style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          >
+            <ActivityIndicator size="large" color="#FFD600" />
+          </View>
+        ) : (
+          <View style={{ flex: 1 }}>
+            <FlatList
+              data={ProdScreen}
+              renderItem={renderItem}
+              numColumns={2}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ padding: 4 }}
+              columnWrapperStyle={{ justifyContent: 'space-between' }}
+              ListFooterComponent={<View style={{ height: 100 }} />}
+            />
+          </View>
+        )}
+
         <View style={styles.bottomBar}>
-          {/* <View style={styles.selectionRow}>
-            <View>
-              <Text style={styles.selLabel}>Selected</Text>
-              <Text style={styles.selName}>{selected.name}</Text>
-            </View>
-            <View style={{ alignItems: 'flex-end' }}>
-              <Text style={styles.selLabel}>Price</Text>
-              <Text style={styles.selPrice}>₹{item.price}</Text>
-            </View>
-          </View> */}
           <TouchableOpacity style={styles.bookBtn} activeOpacity={0.85}>
             <Text style={styles.bookBtnText}>Buy now</Text>
           </TouchableOpacity>
-          <Text style={styles.bookHint}>Read Terms & Conditions · For more info</Text>
+          <Text style={styles.bookHint}>
+            Read Terms & Conditions · For more info
+          </Text>
         </View>
       </SafeAreaView>
     </>

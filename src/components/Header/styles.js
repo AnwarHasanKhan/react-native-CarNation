@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
+    alignItems:'center'
   },
   headericon: {
     backgroundColor: Colors.primary,
@@ -14,13 +15,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 12,
     borderRadius: 40,
-    height:40,
-    width:40
+    height: 40,
+    width: 40,
   },
   headertxt: { fontSize: 14, fontWeight: 'bold', color: Colors.textMuted },
   address: {
-  fontSize: 14,
-  fontWeight: '600',
-  color: '#EEEEEE',
-}
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#EEEEEE',
+  },
 });

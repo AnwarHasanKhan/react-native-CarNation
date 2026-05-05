@@ -92,7 +92,7 @@ const EditProfileScreen = () => {
           <View style={{ gap: 10 }}>
             <CustomButton
               title={'Save Address'}
-              disabled={userName == '' && phoneNo == ''}
+              disabled={userName === '' || phoneNo === ''}
               size={16}
               thick={'600'}
               onPress={() => {

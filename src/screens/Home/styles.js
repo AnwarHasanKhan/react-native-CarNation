@@ -12,6 +12,22 @@ export const styles = StyleSheet.create({
     elevation: 5,
     justifyContent: 'space-between',
   },
+  headcard: {
+    backgroundColor: Colors.card,
+    flex: 1,
+    borderRadius: 10,
+    padding: 20,
+    gap: 10,
+    elevation: 5,
+  },
+  lgcard: {
+    // backgroundColor: Colors.card,
+    flex: 1,
+    borderRadius: 10,
+    padding: 20,
+    gap: 10,
+    // elevation: 5,
+  },
   card2: {
     backgroundColor: Colors.card,
     flex: 1,
@@ -41,5 +57,11 @@ export const styles = StyleSheet.create({
     right: 100,
     top: 60,
     overflow: 'hidden',
+  },
+  linearGradient: {
+    // flex: 1,
+    // paddingLeft: 15,
+    // paddingRight: 15,
+    borderRadius: 5,
   },
 });

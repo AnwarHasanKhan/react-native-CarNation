@@ -24,12 +24,7 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = [{
-                      building: 'B4',
-                      locality: 'Viraj Khand',
-                      city: 'Lucknow',
-                    }
-];
+const initialState = [];
 
 const addressSlice = createSlice({
   name: 'address',

@@ -72,8 +72,8 @@ const AddCarScreen = () => {
               placeholder={'Car Name'}
               placeholderTextColor={'grey'}
               autoFocus
-              value={'VirtusGT'}
-              onChangeText={txt => setCar('VirtusGT')}
+              value={car}
+              onChangeText={txt => setCar(txt)}
               style={{ flex: 1, color: '#fff' }}
             />
           </View>
@@ -81,9 +81,9 @@ const AddCarScreen = () => {
             <TextInput
               placeholder={'Plate Number'}
               placeholderTextColor={'grey'}
-              value={'Plate1'}
-              onChangeText={txt => setLicense('Plate1')}
-              style={{ flex: 1, color: '#fff',textTransform:'uppercase' }}
+              value={license}
+              onChangeText={txt => setLicense(txt)}
+              style={{ flex: 1, color: '#fff', textTransform: 'uppercase' }}
             />
           </View>
           <View style={{ gap: 10 }}>
@@ -94,8 +94,8 @@ const AddCarScreen = () => {
               onPress={() => {
                 dispatch(
                   addCar({
-                    name: 'VirtusGT',
-                    license: 'Plate1',
+                    name: car,
+                    license: license,
                   }),
                 );
                 setCar('');

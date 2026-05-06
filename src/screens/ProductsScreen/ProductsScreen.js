@@ -20,11 +20,11 @@ const ProductsScreen = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-    useEffect(() => {
-      setTimeout(() => {
-        setLoading(false)
-      }, 2500);
-    }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+  }, []);
 
   const ProdScreen = usefetchProducts({ product, loading, error });
 

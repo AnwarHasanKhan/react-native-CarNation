@@ -11,13 +11,22 @@ const carSlice = createSlice({
   initialState,
   reducers: {
     addCar: (state, action) => {
-      state.name = 'VirtusGT';
-      // action.payload.car;
-      state.license = 'Plate1';
-      // action.payload.license;
+      state.name =
+        //  'VirtusGT';
+        action.payload.name;
+      state.license =
+        // 'Plate1';
+        action.payload.license;
       state.isDefault = true;
       // action.payload.isDefault || false;
     },
+
+    // addUser: (state, action) => {
+    //   if (action.payload.userName !== undefined)
+    //     state.userName = action.payload.userName;
+    //   if (action.payload.phoneNo !== undefined)
+    //     state.phoneNo = action.payload.phoneNo;
+    // },
 
     removeCar: () => {
       return initialState;

@@ -152,7 +152,7 @@ const AddressScreen = () => {
                 />
               </View>
             </KeyboardAvoidingView>
-            {selectedIndex !== null && addresses[selectedIndex] && (
+            {/* {selectedIndex !== null && addresses[selectedIndex] && (
               <View
                 style={{
                   gap: 10,
@@ -206,7 +206,7 @@ const AddressScreen = () => {
                   </View>
                 </TouchableOpacity>
               </View>
-            )}
+            )} */}
             {addresses.length > 0 && (
               <View
                 style={{
@@ -229,7 +229,7 @@ const AddressScreen = () => {
                     const isSelected = selectedIndex === index;
 
                     return (
-                      <TouchableOpacity
+                      <Pressable
                         style={{
                           backgroundColor: Colors.card,
                           borderRadius: 10,
@@ -245,7 +245,10 @@ const AddressScreen = () => {
                             ? Colors.primary
                             : 'transparent',
                         }}
-                        onPress={() => dispatch(setSelectedIndex(index))}
+                        onPress={() => {
+                          dispatch(setSelectedIndex(index));
+                          setTimeout(()=>{goBack()},600)
+                        }}
                       >
                         <View
                           style={{
@@ -280,7 +283,7 @@ const AddressScreen = () => {
                             style={{ width: 15, height: 15, tintColor: '#fff' }}
                           />
                         </TouchableOpacity>
-                      </TouchableOpacity>
+                      </Pressable>
                     );
                   }}
                 />

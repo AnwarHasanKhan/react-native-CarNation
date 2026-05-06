@@ -17,6 +17,7 @@ import { styles } from '../SignIn/styles';
 import { Colors } from '../../assets/Colors';
 import { navigate } from '../../navigation/NavigationService';
 import { getAuth, signInWithPhoneNumber } from '@react-native-firebase/auth';
+import LinearGradient from 'react-native-linear-gradient';
 
 const SignIn = () => {
   const [phoneNo, setPhoneNo] = useState('');
@@ -75,7 +76,16 @@ const SignIn = () => {
         hidden={false}
         translucent={true}
       />
-      <SafeAreaView style={{ flex: 1, backgroundColor: Colors.appBg }}>
+      <LinearGradient
+              useAngle={true}
+              angle={180}
+              angleCenter={{ x: 0.1, y: 0.9 }}
+              colors={['#000000','#0f0f0f', '#000b48']}
+              style={{
+                flex: 1,
+              }}
+            >
+      <SafeAreaView style={{ flex: 1 }}>
         <KeyboardAvoidingView
           behavior="padding"
           keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0}
@@ -224,6 +234,7 @@ const SignIn = () => {
           By proceeding you agree to terms and conditions and privacy policies
         </Text>
       </SafeAreaView>
+      </LinearGradient>
     </>
   );
 };

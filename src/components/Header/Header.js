@@ -70,7 +70,7 @@ const Header = () => {
   const selectedAddress =
     selectedIndex !== null && addresses[selectedIndex]
       ? addresses[selectedIndex]
-      : addresses[0] ?? null; // fallback to first if none selected
+      : addresses[0] ?? null;
 
   return (
     <View style={styles.container}>

@@ -223,7 +223,7 @@ const Profile = () => {
                   icon={require('../../assets/icons/car-wash.png')}
                 />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigate('UD')}>
+              <TouchableOpacity onPress={() => navigate('MyBookingScreen')}>
                 <ListItem2
                   label="My Booking"
                   icon={require('../../assets/icons/sticky-notes.png')}

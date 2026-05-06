@@ -7,11 +7,13 @@ import {
   View,
 } from 'react-native';
 import { SERVICES } from '../../screens/ServiceAndRepair/ServiceModel';
-import {formatPrice} from '../../utils/helpers/PriceFormatter'
-import {styles} from './styles'
+import { formatPrice } from '../../utils/helpers/PriceFormatter';
+import { styles } from './styles';
 import { Colors } from '../../assets/Colors';
+import { useSelector } from 'react-redux';
+import { navigate } from '../../navigation/NavigationService';
 
- export const ServiceCard = ({ service, selected, onSelect }) => (
+export const ServiceCard = ({ service, selected, onSelect }) => (
   <TouchableOpacity
     activeOpacity={0.8}
     onPress={() => onSelect(service.id)}
@@ -50,6 +52,8 @@ export const StepSelectService = ({
   onNext,
 }) => {
   const service = SERVICES.find(s => s.id === selectedService);
+  const name = useSelector(state => state.carlist?.name);
+  const license = useSelector(state => state.carlist?.license);
 
   return (
     <ScrollView
@@ -69,11 +73,17 @@ export const StepSelectService = ({
             />
           </View>
           <View>
-            <Text style={styles.vehicleName}>Generic</Text>
-            <Text style={styles.vehicleSub}>Vivek Khand, Lucknow</Text>
+            <Text style={styles.vehicleName}>{name}</Text>
+            <Text style={styles.vehicleSub}>{license}</Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.changeBadge} activeOpacity={0.7}>
+        <TouchableOpacity
+          style={styles.changeBadge}
+          activeOpacity={0.7}
+          onPress={() => {
+            navigate('AddCarScreen');
+          }}
+        >
           <Text style={styles.changeBadgeText}>Change</Text>
         </TouchableOpacity>
       </View>

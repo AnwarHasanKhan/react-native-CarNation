@@ -13,9 +13,10 @@ import PackageScreen from '../screens/PackageScreen/PackageScreen';
 import ProductsScreen from '../screens/ProductsScreen/ProductsScreen';
 import HelpScreen from '../screens/HelpScreen/HelpScreen';
 import ServiceAndRepair from '../screens/ServiceAndRepair/ServiceAndRepair';
-import AddressScreen from '../screens/AddressScreen/AddressScreen'
-import EditProfileScreen from '../screens/EditProfileScreen/EditProfileScreen'
-import AddCarScreen from '../screens/AddCarScreen/AddCarScreen'
+import AddressScreen from '../screens/AddressScreen/AddressScreen';
+import EditProfileScreen from '../screens/EditProfileScreen/EditProfileScreen';
+import AddCarScreen from '../screens/AddCarScreen/AddCarScreen';
+import MyBookingScreen from '../screens/MyBookingScreen/MyBookingScreen';
 import UD from '../screens/UnderDevelopment/UD';
 
 const Stack = createNativeStackNavigator();
@@ -36,8 +37,12 @@ const RootNavigation = () => {
           <Stack.Screen name="HelpScreen" component={HelpScreen} />
           <Stack.Screen name="ServiceAndRepair" component={ServiceAndRepair} />
           <Stack.Screen name="AddressScreen" component={AddressScreen} />
-          <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
+          <Stack.Screen
+            name="EditProfileScreen"
+            component={EditProfileScreen}
+          />
           <Stack.Screen name="AddCarScreen" component={AddCarScreen} />
+          <Stack.Screen name="MyBookingScreen" component={MyBookingScreen} />
           <Stack.Screen name="UD" component={UD} />
         </Stack.Navigator>
       </NavigationContainer>

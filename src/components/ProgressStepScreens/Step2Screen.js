@@ -10,7 +10,9 @@ export const StepSchedule = ({
   setSelectedTime,
   service,
   onNext,
+  selectedAddress
 }) => (
+  
   <ScrollView
     style={styles.stepScroll}
     contentContainerStyle={styles.stepContent}
@@ -19,9 +21,18 @@ export const StepSchedule = ({
     <Text style={styles.sectionLabel}>Pick-up address</Text>
     <View style={styles.addressCard}>
       <Text style={styles.addressLabel}>Home</Text>
-      <Text style={styles.addressText}>
+      {/* <Text style={styles.addressText}>
         Vivek Khand Road, Vivek Khand, Lucknow
-      </Text>
+      </Text> */}
+       {selectedAddress ? (
+            <Text style={styles.addressText} numberOfLines={1}>
+              {[selectedAddress.building, selectedAddress.locality, selectedAddress.city]
+                .filter(Boolean)
+                .join(', ')}
+            </Text>
+          ) : (
+            <Text style={styles.headertxt}>Enter Your Address</Text>
+          )}
     </View>
 
     <Text style={styles.sectionLabel}>Select date</Text>

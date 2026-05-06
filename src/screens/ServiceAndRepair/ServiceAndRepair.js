@@ -14,6 +14,7 @@ import {StepSelectService} from '../../components/ProgressStepScreens/Step1Scree
 import {StepSchedule} from '../../components/ProgressStepScreens/Step2Screen'
 import {StepReview} from '../../components/ProgressStepScreens/Step3Screen'
 import {ConfirmedScreen} from '../../components/ProgressStepScreens/ConfirmScreen'
+import { useSelector } from 'react-redux';
 
 export default function CarServiceBooking() {
   const [step, setStep] = useState(1);
@@ -24,6 +25,13 @@ export default function CarServiceBooking() {
   const [confirmed, setConfirmed] = useState(false);
 
   const service = SERVICES.find(s => s.id === selectedService);
+  
+    const addresses = useSelector(state => state.address.addresses);
+    const selectedIndex = useSelector(state => state.address.selectedIndex);
+    const selectedAddress =
+    selectedIndex !== null && addresses[selectedIndex]
+      ? addresses[selectedIndex]
+      : addresses[0] ?? null;
 
   const handleReset = () => {
     setStep(1);
@@ -75,6 +83,7 @@ export default function CarServiceBooking() {
             service={service}
             selectedDay={selectedDay}
             selectedTime={selectedTime}
+            selectedAddress={selectedAddress}
             onReset={handleReset}
           />
         ) : step === 1 ? (
@@ -91,6 +100,7 @@ export default function CarServiceBooking() {
             setSelectedDay={setSelectedDay}
             selectedTime={selectedTime}
             setSelectedTime={setSelectedTime}
+            selectedAddress={selectedAddress}
             service={service}
             onNext={() => setStep(3)}
           />
@@ -99,6 +109,7 @@ export default function CarServiceBooking() {
             service={service}
             selectedDay={selectedDay}
             selectedTime={selectedTime}
+            selectedAddress={selectedAddress}
             onConfirm={() => setConfirmed(true)}
           />
         )}

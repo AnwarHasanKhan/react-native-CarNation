@@ -11,6 +11,7 @@ export const ConfirmedScreen = ({
   selectedDay,
   selectedTime,
   onReset,
+  selectedAddress,
 }) => {
   const [bookingId] = useState(randomBookingId);
 
@@ -43,7 +44,14 @@ export const ConfirmedScreen = ({
           { label: 'Service', value: service.name },
           { label: 'Date', value: selectedDay },
           { label: 'Time', value: selectedTime },
-          { label: 'Pick-up', value: 'Vivek Khand, Lucknow' },
+          {
+          label: 'Pick-up',
+          value: [
+            selectedAddress.building,
+            selectedAddress.locality,
+            selectedAddress.city,
+          ].join(', '),
+        },
           {
             label: 'Amount',
             value: formatPrice(service.price),

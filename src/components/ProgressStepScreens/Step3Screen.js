@@ -26,6 +26,7 @@ export const StepReview = ({
   selectedDay,
   selectedTime,
   onConfirm,
+  selectedAddress,
 }) => (
   <ScrollView
     style={styles.stepScroll}
@@ -39,7 +40,14 @@ export const StepReview = ({
         { label: 'Duration', value: service.duration },
         { label: 'Date', value: selectedDay },
         { label: 'Time', value: selectedTime },
-        { label: 'Pick-up', value: 'Vivek Khand, Lucknow' },
+        {
+          label: 'Pick-up',
+          value: [
+            selectedAddress.building,
+            selectedAddress.locality,
+            selectedAddress.city,
+          ].join(', '),
+        },
         { label: 'Drop', value: 'Same address', last: true },
       ].map(row => (
         <SummaryRow key={row.label} {...row} />
@@ -81,5 +89,3 @@ export const StepReview = ({
     <Text style={styles.noPayNote}>No payment now · pay after service</Text>
   </ScrollView>
 );
-
-

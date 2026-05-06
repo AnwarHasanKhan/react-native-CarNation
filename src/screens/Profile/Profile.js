@@ -15,6 +15,39 @@ import { navigate, replace } from '../../navigation/NavigationService';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCar, removeCar } from '../../redux/slice/carSlice';
 
+const ListItem = React.memo(({ label, icon }) => (
+  <View style={styles.listRow}>
+    <View
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        gap: 10,
+        alignItems: 'center',
+      }}
+    >
+      <Image source={icon} style={styles.listIcon} />
+      <Text style={styles.listLabel}>{label}</Text>
+    </View>
+    <Image
+      source={require('../../assets/icons/next.png')}
+      style={styles.nextIcon}
+    />
+  </View>
+));
+
+const ListItem2 = React.memo(({ label, icon }) => (
+  <View
+    style={{
+      gap: 5,
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <Image source={icon} style={styles.listIcon2} />
+    <Text style={styles.listLabel}>{label}</Text>
+  </View>
+));
+
 const Profile = () => {
   const dispatch = useDispatch();
 
@@ -23,40 +56,7 @@ const Profile = () => {
   const isDefault = useSelector(state => state.carlist.isDefault);
   const userName = useSelector(state => state.userinfo?.userName);
   const phoneNo = useSelector(state => state.userinfo?.phoneNo);
-  const ListItem = ({ label, icon }) => (
-    <View style={styles.listRow}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          gap: 10,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Image source={icon} style={styles.listIcon} />
-        <Text style={styles.listLabel}>{label}</Text>
-      </View>
-      <Image
-        source={require('../../assets/icons/next.png')}
-        style={styles.nextIcon}
-      />
-    </View>
-  );
 
-  const ListItem2 = ({ label, icon }) => (
-    <View
-      style={{
-        justifyContent: 'space-between',
-        gap: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Image source={icon} style={styles.listIcon2} />
-      <Text style={styles.listLabel}>{label}</Text>
-    </View>
-  );
   return (
     <>
       <StatusBar
@@ -126,27 +126,21 @@ const Profile = () => {
                   >
                     License: {license}
                   </Text>
-                  <Text
-                    style={{ color: Colors.textPrimary, fontWeight: '600' }}
-                  >
-                    {isDefault && (
-                      <View
-                        style={{
-                          flex: 1,
-                          gap: 5,
-                          backgroundColor: Colors.primary,
-                          paddingHorizontal: 5,
-                          borderRadius: 5,
-                        }}
-                      >
-                        <Text
-                          style={{ color: Colors.appBg, fontWeight: '600' }}
-                        >
-                          default
-                        </Text>
-                      </View>
-                    )}
-                  </Text>
+                  {isDefault && (
+                    <View
+                      style={{
+                        gap: 5,
+                        backgroundColor: Colors.primary,
+                        paddingHorizontal: 5,
+                        borderRadius: 5,
+                        alignSelf:'flex-start'
+                      }}
+                    >
+                      <Text style={{ color: Colors.appBg, fontWeight: '600' }}>
+                        Default
+                      </Text>
+                    </View>
+                  )}
                 </View>
                 <Pressable
                   onPress={() => {

@@ -44,7 +44,7 @@ const AddCarScreen = () => {
           }}
         >
           <Image
-            source={require('../../assets/icons/back.png')}
+            source={require('../../assets/icons/down.png')}
             style={{ width: 30, height: 30, tintColor: '#fff' }}
           />
           <Text
@@ -101,14 +101,6 @@ const AddCarScreen = () => {
                 setCar('');
                 setLicense('');
                 goBack();
-              }}
-            />
-            <CustomButton
-              title={'Clear Address'}
-              size={16}
-              thick={'600'}
-              onPress={() => {
-                dispatch(removeCar());
               }}
             />
           </View>

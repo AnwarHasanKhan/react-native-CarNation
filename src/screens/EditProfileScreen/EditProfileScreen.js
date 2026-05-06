@@ -91,7 +91,7 @@ const EditProfileScreen = () => {
           </View>
           <View style={{ gap: 10 }}>
             <CustomButton
-              title={'Save Address'}
+              title={'Save Profile'}
               disabled={userName === '' || phoneNo === ''}
               size={16}
               thick={'600'}
@@ -105,14 +105,6 @@ const EditProfileScreen = () => {
                 setUserName('');
                 setPhoneNo('');
                 goBack();
-              }}
-            />
-            <CustomButton
-              title={'Clear Address'}
-              size={16}
-              thick={'600'}
-              onPress={() => {
-                dispatch(removeUser());
               }}
             />
           </View>

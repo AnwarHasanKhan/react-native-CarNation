@@ -25,7 +25,7 @@ const ProductsScreen = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 1200);
   }, []);
 
   const ProdScreen = usefetchProducts({ product, loading, error });

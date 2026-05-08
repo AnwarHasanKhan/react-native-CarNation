@@ -119,7 +119,7 @@ const Profile = () => {
                   <Text
                     style={{ color: Colors.textPrimary, fontWeight: '600' }}
                   >
-                    Car: {name}
+                    {name}
                   </Text>
                   <Text
                     style={{ color: Colors.textPrimary, fontWeight: '600' }}

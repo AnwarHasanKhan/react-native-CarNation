@@ -2,16 +2,16 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '../assets/Colors';
 import { goBack } from '../navigation/NavigationService';
+import CustomButton from './CustomButton';
 
 const CartEmpty = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View
         style={{
-          marginTop: 100,
+          flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-          width: '100%',
           gap: 10,
         }}
       >
@@ -32,27 +32,7 @@ const CartEmpty = () => {
         >
           The bags seems empty..
         </Text>
-        <TouchableOpacity
-          style={{
-            borderWidth: 1,
-            borderRadius: 10,
-            paddingHorizontal: 15,
-            paddingVertical: 6,
-            backgroundColor: Colors.primary,
-          }}
-          onPress={() => {
-            goBack();
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 18,
-              color: '#000',
-            }}
-          >
-            SHOP NOW
-          </Text>
-        </TouchableOpacity>
+        <CustomButton title={'SHOP NOW'} size={16} thick={'600'} onPress={()=>{goBack()}}/>
       </View>
     </SafeAreaView>
   );

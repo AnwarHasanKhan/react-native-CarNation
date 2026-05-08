@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   name: 'Your Car',
-  license: 'Number Plate',
+  license: 'Plate',
   isDefault: false,
 };
 

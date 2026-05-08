@@ -3,7 +3,7 @@ import React from 'react';
 import { navigate } from '../navigation/NavigationService';
 import { Colors } from '../assets/Colors';
 
-const CustomButton = ({ title, size, thick, onPress, disabled }) => {
+const CustomButton = ({ title, size, thick, onPress, disabled,activeOpacity }) => {
   return (
     <TouchableOpacity
       style={{
@@ -18,6 +18,7 @@ const CustomButton = ({ title, size, thick, onPress, disabled }) => {
       }}
       onPress={onPress}
       disabled={disabled}
+      activeOpacity={activeOpacity}
     >
       <Text
         style={{

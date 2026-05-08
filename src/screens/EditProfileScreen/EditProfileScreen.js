@@ -95,6 +95,7 @@ const EditProfileScreen = () => {
               title={'Save Profile'}
               disabled={userName === '' || phoneNo === ''}
               size={16}
+              activeOpacity={0.7}
               thick={'600'}
               onPress={() => {
                 dispatch(

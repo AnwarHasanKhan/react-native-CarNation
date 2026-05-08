@@ -185,6 +185,7 @@ const CartScreen = () => {
               size={18}
               thick={'700'}
               onPress={()=>{navigate('AddressScreen')}}
+              activeOpacity={0.7}
             />
           </View>
         </View>

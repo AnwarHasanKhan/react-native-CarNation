@@ -90,8 +90,10 @@ const AddCarScreen = () => {
           <View style={{ gap: 10 }}>
             <CustomButton
               title={'Save Car'}
+              disabled={car === '' || license === ''}
               size={16}
               thick={'600'}
+              activeOpacity={0.7}
               onPress={() => {
                 dispatch(
                   addCar({

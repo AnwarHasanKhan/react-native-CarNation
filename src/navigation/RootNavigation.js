@@ -18,6 +18,7 @@ import EditProfileScreen from '../screens/EditProfileScreen/EditProfileScreen';
 import AddCarScreen from '../screens/AddCarScreen/AddCarScreen';
 import MyBookingScreen from '../screens/MyBookingScreen/MyBookingScreen';
 import UD from '../screens/UnderDevelopment/UD';
+import CartScreen from '../screens/CartScreen/CartScreen'
 
 const Stack = createNativeStackNavigator();
 const RootNavigation = () => {
@@ -43,6 +44,7 @@ const RootNavigation = () => {
           />
           <Stack.Screen name="AddCarScreen" component={AddCarScreen} />
           <Stack.Screen name="MyBookingScreen" component={MyBookingScreen} />
+          <Stack.Screen name="CartScreen" component={CartScreen} />
           <Stack.Screen name="UD" component={UD} />
         </Stack.Navigator>
       </NavigationContainer>

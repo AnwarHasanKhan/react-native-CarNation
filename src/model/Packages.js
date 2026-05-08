@@ -34,7 +34,7 @@ export const PACKAGES = {
     {
       id: 'qr',
       name: 'Quick rinse',
-      price: 69,
+      price: 79,
       time: '20 min',
       tag: null,
       features: ['Exterior water wash', 'Wheel rinse', 'Window wipe'],

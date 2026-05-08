@@ -112,10 +112,15 @@ export default function Subscription({ navigation }) {
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar barStyle="light-content" backgroundColor={Colors.header} />
-      <Header2 title={'Monthly Plans'} subtitle={'Choose you vehicle type'} onPress={()=>{goBack()}}/>
-
       {/* Segment */}
       <View style={styles.segWrapper}>
+        <Header2
+        title={'Monthly Plans'}
+        subtitle={'Choose you vehicle type'}
+        onPress={() => {
+          goBack();
+        }}
+      />
         <View style={styles.segContainer}>
           {VEHICLES.map(v => (
             <TouchableOpacity

@@ -3,8 +3,8 @@ export const MONTHLY_PLANS = {
     {
       id: 'bm_basic',
       name: 'Bike Basic',
-      price: 149,
-      originalPrice: 198,
+      price: 349,
+      originalPrice: 499,
       visits: 2,
       tag: null,
       includes: [{ serviceId: 'fb', count: 2 }],
@@ -17,8 +17,8 @@ export const MONTHLY_PLANS = {
     {
       id: 'bm_plus',
       name: 'Bike Plus',
-      price: 249,
-      originalPrice: 298,
+      price: 499,
+      originalPrice: 599,
       visits: 3,
       tag: 'Popular',
       includes: [
@@ -37,22 +37,22 @@ export const MONTHLY_PLANS = {
     {
       id: 'cm_basic',
       name: 'Basic Care',
-      price: 249,
-      originalPrice: 318,
+      price: 649,
+      originalPrice: 799,
       visits: 2,
       tag: 'Save 20%',
       includes: [{ serviceId: 'es', count: 2 }],
       description: [
+        'Dusting every third day for a month',
         '2 Essential washes per month',
         'Exterior + interior basic cleaning',
-        'Ideal for weekly upkeep',
       ],
     },
     {
       id: 'cm_plus',
       name: 'Plus Care',
-      price: 399,
-      originalPrice: 477,
+      price: 999,
+      originalPrice: 1199,
       visits: 3,
       tag: 'Popular',
       includes: [
@@ -68,8 +68,8 @@ export const MONTHLY_PLANS = {
     {
       id: 'cm_pro',
       name: 'Pro Care',
-      price: 699,
-      originalPrice: 917,
+      price: 1199,
+      originalPrice: 1499,
       visits: 4,
       tag: 'Best value',
       includes: [

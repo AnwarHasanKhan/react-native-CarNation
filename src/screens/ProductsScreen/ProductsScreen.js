@@ -13,7 +13,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors } from '../../assets/Colors';
 import Header2 from '../../components/Header2/Header2';
 import usefetchProducts from '../../hooks/usefetchProducts';
-import { goBack } from '../../navigation/NavigationService';
+import { goBack, navigate } from '../../navigation/NavigationService';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../../redux/slice/cartSlice';
 
 const ProductsScreen = () => {
   const [product, setProducts] = useState([]);
@@ -27,7 +29,8 @@ const ProductsScreen = () => {
   }, []);
 
   const ProdScreen = usefetchProducts({ product, loading, error });
-
+  const dispatch = useDispatch();
+  
   const renderItem = ({ item }) => (
     <View style={styles.card}>
       <Image source={{ uri: item.images[0] }} style={styles.image} />
@@ -41,7 +44,7 @@ const ProductsScreen = () => {
         <Text
           style={styles.cartbtn}
           onPress={x => {
-            dispatch(addItemToCart(item));
+            dispatch(addToCart(item));
           }}
         >
           Add Item
@@ -84,13 +87,15 @@ const ProductsScreen = () => {
         translucent={false}
       />
       <SafeAreaView style={{ flex: 1, backgroundColor: Colors.appBg }}>
-        <Header2
-          title={'Shop Products'}
-          subtitle={'Choose best for your car'}
-          onPress={() => {
-            goBack();
-          }}
-        />
+        <View style={styles.segWrapper}>
+          <Header2
+            title={'Shop Products'}
+            subtitle={'Choose best for your car'}
+            onPress={() => {
+              goBack();
+            }}
+          />
+        </View>
         {loading ? (
           <View
             style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
@@ -112,7 +117,8 @@ const ProductsScreen = () => {
         )}
 
         <View style={styles.bottomBar}>
-          <TouchableOpacity style={styles.bookBtn} activeOpacity={0.85}>
+          <TouchableOpacity style={styles.bookBtn} activeOpacity={0.85}
+          onPress={()=>{navigate('CartScreen')}}>
             <Text style={styles.bookBtnText}>Buy now</Text>
           </TouchableOpacity>
           <Text style={styles.bookHint}>

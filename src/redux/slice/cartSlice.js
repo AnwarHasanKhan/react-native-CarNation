@@ -1,0 +1,101 @@
+// import { ADD_TO_CART, CLEAR_CART, REMOVE_FROM_CART } from '../ActionTypes';
+
+// const initialState = [];
+
+// export default (state = initialState, { type, payload }) => {
+//   switch (type) {
+//     case ADD_TO_CART: {
+//       const existingProductIndex = state.findIndex(
+//         item => item.id === payload.id,
+//       );
+
+//       if (existingProductIndex >= 0) {
+//         return state.map((item, index) =>
+//           index === existingProductIndex? { ...item, quantity: item.quantity + 1 }: item,
+//         );
+//       } else {
+//         return [...state, { ...payload, quantity: 1 }];
+//       }
+//     }
+
+//     case REMOVE_FROM_CART: {
+//       const existingProductIndex = state.findIndex(
+//         item => item.id === payload.id,
+//       );
+
+//       if (existingProductIndex >= 0) {
+//         const item = state[existingProductIndex];
+
+//         if (item.quantity > 1) {
+//           return state.map((itm, index) =>
+//             index === existingProductIndex? { ...itm, quantity: itm.quantity - 1 }: itm,
+//           );
+//         } else {
+//           return state.filter((_, index) => index !== existingProductIndex);
+//         }
+//       }
+
+//       return state;
+//     }
+
+//     case CLEAR_CART:
+//       return [];
+
+//     default:
+//       return state;
+//   }
+// };
+
+import { createSlice } from '@reduxjs/toolkit';
+
+const initialState = [];
+
+const cartSlice = createSlice({
+  name: 'cart',
+  initialState,
+  reducers: {
+    addToCart: (state, action) => {
+      const existingProductIndex = state.findIndex(
+        item => item.id === action.payload.id,
+      );
+
+      if (existingProductIndex >= 0) {
+        return state.map((item, index) =>
+          index === existingProductIndex
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        );
+      } else {
+        return [...state, { ...action.payload, quantity: 1 }];
+      }
+    },
+    removeFromCart: (state, action) => {
+      const existingProductIndex = state.findIndex(
+        item => item.id === action.payload.id,
+      );
+
+      if (existingProductIndex >= 0) {
+        const item = state[existingProductIndex];
+
+        if (item.quantity > 1) {
+          return state.map((itm, index) =>
+            index === existingProductIndex
+              ? { ...itm, quantity: itm.quantity - 1 }
+              : itm,
+          );
+        } else {
+          return state.filter((_, index) => index !== existingProductIndex);
+        }
+      }
+
+      return state;
+    },
+    clearCart: () => {
+      return initialState;
+    },
+  },
+});
+
+export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
+
+export default cartSlice.reducer;

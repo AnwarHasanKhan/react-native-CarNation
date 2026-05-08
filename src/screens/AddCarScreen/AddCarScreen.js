@@ -38,6 +38,7 @@ const AddCarScreen = () => {
             paddingVertical: 10,
             alignItems: 'center',
             backgroundColor: Colors.appBg,
+            paddingHorizontal: 16,
           }}
           onPress={() => {
             goBack();

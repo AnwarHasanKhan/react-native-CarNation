@@ -56,6 +56,7 @@ const AddressScreen = () => {
             paddingVertical: 10,
             alignItems: 'center',
             backgroundColor: Colors.appBg,
+            paddingHorizontal: 16,
           }}
           onPress={() => {
             goBack();
@@ -247,7 +248,9 @@ const AddressScreen = () => {
                         }}
                         onPress={() => {
                           dispatch(setSelectedIndex(index));
-                          setTimeout(()=>{goBack()},600)
+                          setTimeout(() => {
+                            goBack();
+                          }, 600);
                         }}
                       >
                         <View

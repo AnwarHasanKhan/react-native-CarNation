@@ -20,6 +20,7 @@ import { combineReducers } from 'redux';
 import carReducer from '../slice/carSlice';
 import addressReducer from '../slice/addressSlice';
 import userReducer from '../slice/userSlice';
+import cartReducer from '../slice/cartSlice';
 
 
 const persistConfig = {
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   carlist: carReducer,
   address: addressReducer,
   userinfo: userReducer,
+  cart : cartReducer
 });
 
 

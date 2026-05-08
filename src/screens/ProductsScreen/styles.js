@@ -88,4 +88,8 @@ export const styles = StyleSheet.create({
     color: '#444444',
     textAlign: 'center',
   },
+   segWrapper: {
+    backgroundColor: Colors.card,
+    paddingHorizontal: 20,
+  },
 });

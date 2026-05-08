@@ -62,9 +62,11 @@ import React from 'react';
 import { styles } from './styles';
 import { useSelector } from 'react-redux';
 import { navigate } from '../../navigation/NavigationService';
+import { Colors } from '../../assets/Colors';
 
 const Header = () => {
   const addresses = useSelector(state => state.address.addresses);
+  const cartData = useSelector(state => state.cart);
   const selectedIndex = useSelector(state => state.address.selectedIndex);
 
   const selectedAddress =
@@ -78,7 +80,12 @@ const Header = () => {
         <Text style={styles.headertxt}>Your Location</Text>
         <TouchableOpacity
           onPress={() => navigate('AddressScreen')}
-          style={{ flex: 1, flexDirection: 'row', gap: 5, alignItems: 'center' }}
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            gap: 5,
+            alignItems: 'center',
+          }}
         >
           <Image
             source={require('../../assets/icons/location.png')}
@@ -86,7 +93,11 @@ const Header = () => {
           />
           {selectedAddress ? (
             <Text style={styles.address} numberOfLines={1}>
-              {[selectedAddress.building, selectedAddress.locality, selectedAddress.city]
+              {[
+                selectedAddress.building,
+                selectedAddress.locality,
+                selectedAddress.city,
+              ]
                 .filter(Boolean)
                 .join(', ')}
             </Text>
@@ -97,16 +108,39 @@ const Header = () => {
       </View>
       <TouchableOpacity
         style={styles.headericon}
-        onPress={() => navigate('ProductsScreen')}
+        onPress={() => navigate('CartScreen')}
       >
         <Image
           source={require('../../assets/icons/shopping-cart.png')}
           style={{ width: 20, height: 20 }}
         />
       </TouchableOpacity>
+      {cartData.length > 0 && (
+        <View
+          style={{
+            width: 20,
+            height: 20,
+            backgroundColor: Colors.red,
+            borderRadius: 10,
+            justifyContent: 'center',
+            alignItems: 'center',
+            position: 'absolute',
+            top: 5,
+            right: 5,
+          }}
+        >
+          <Text
+            style={{
+              color: '#fff',
+              fontWeight: '700',
+            }}
+          >
+            {cartData.length}
+          </Text>
+        </View>
+      )}
     </View>
   );
 };
 
 export default Header;
-

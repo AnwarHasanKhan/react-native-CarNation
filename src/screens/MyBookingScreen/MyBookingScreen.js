@@ -11,6 +11,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { goBack, navigate } from '../../navigation/NavigationService';
 import { styles } from './styles';
+import Header2 from '../../components/Header2/Header2';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -326,19 +327,13 @@ const MyBookingsScreen = () => {
 
       {/* Header */}
       <View style={styles.header}>
-        <View style={styles.headerRow}>
-          <TouchableOpacity
-            style={styles.backBtn}
-            onPress={goBack}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.backBtnText}>‹</Text>
-          </TouchableOpacity>
-          <View>
-            <Text style={styles.headerTitle}>My Bookings</Text>
-            <Text style={styles.headerSub}>Track all your service history</Text>
-          </View>
-        </View>
+        <Header2
+          title={'My Bookings'}
+          subtitle={'Track all your booking and services'}
+          onPress={() => {
+            goBack();
+          }}
+        />
 
         {/* Tabs */}
         <View style={styles.tabsContainer}>
@@ -383,7 +378,11 @@ const MyBookingsScreen = () => {
                   label: 'Completed',
                   color: COLORS.white,
                 },
-                { num: stats.cancelled, label: 'Cancelled', color: COLORS.white },
+                {
+                  num: stats.cancelled,
+                  label: 'Cancelled',
+                  color: COLORS.white,
+                },
               ].map((s, i, arr) => (
                 <View
                   key={s.label}

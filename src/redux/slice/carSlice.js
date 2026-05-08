@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  name: 'Hyundai i10',
-  license: 'UP31BR0393',
+  name: 'Your Car',
+  license: 'Number Plate',
   isDefault: false,
 };
 

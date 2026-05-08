@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
   header: {
     backgroundColor: '#111',
     paddingHorizontal: 20,
-    paddingTop: Platform.OS === 'android' ? 12 : 8,
+    paddingTop: Platform.OS === 'android' ? 8 : 8,
     paddingBottom: 14,
     borderBottomWidth: 0.5,
     borderBottomColor: COLORS.borderSubtle,

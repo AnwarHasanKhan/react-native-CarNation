@@ -16,6 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Header2 from '../../components/Header2/Header2';
 import { styles } from './styles';
 import CustomButton from '../../components/CustomButton';
+import { goBack } from '../../navigation/NavigationService';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 

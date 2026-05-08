@@ -17,6 +17,7 @@ import Header2 from '../../components/Header2/Header2';
 import { styles } from './styles';
 import CustomButton from '../../components/CustomButton';
 import { goBack } from '../../navigation/NavigationService';
+import LinearGradient from 'react-native-linear-gradient';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -129,7 +130,7 @@ const HeroSection = () => (
     <View style={styles.coinRing}>
       <Image
         source={require('../../assets/icons/coin.png')}
-        style={{ height: 50, width: 50 }}
+        style={{ height: 60, width: 60 }}
       />
     </View>
     <Text style={styles.heroTitle}>Invite friends, earn ₹50</Text>
@@ -250,87 +251,89 @@ const ReferEarn = ({ navigation }) => {
         backgroundColor="#000"
         translucent={false}
       />
-      <SafeAreaView style={styles.safeArea}>
-        {/* ── Header ── */}
-        <View style={styles.header}>
-          <Header2
-            title={'Refer & Earn'}
-            subtitle={'Earn free points for every referral'}
-            onPress={() => {
-              goBack();
-            }}
-          />
-        </View>
+      <LinearGradient
+        useAngle={true}
+        angle={15}
+        angleCenter={{ x: 0.1, y: 0.2 }}
+        colors={['#0A0A0A', '#121212', '#192f6a']}
+        style={{
+          flex: 1,
+        }}
+      >
+        <SafeAreaView style={styles.safeArea}>
+          <ScrollView
+            style={styles.scroll}
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
+          >
+            {/* ── Hero ── */}
+            <HeroSection />
 
-        <ScrollView
-          style={styles.scroll}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
-          {/* ── Hero ── */}
-          <HeroSection />
+            {/* ── Referral Code ── */}
+            <ReferralCodeBox copied={copied} onCopy={handleCopy} />
 
-          {/* ── Referral Code ── */}
-          <ReferralCodeBox copied={copied} onCopy={handleCopy} />
+            {/* ── Share Button ── */}
+            <ShareButton onShare={handleShare} />
 
-          {/* ── Share Button ── */}
-          <ShareButton onShare={handleShare} />
+            {/* ── How it works ── */}
+            <SectionLabel label="HOW IT WORKS" style={{ marginBottom: 12 }} />
+            <View style={styles.stepsContainer}>
+              {STEPS.map((step, index) => (
+                <StepItem
+                  key={step.num}
+                  step={step}
+                  isLast={index === STEPS.length - 1}
+                />
+              ))}
+            </View>
 
-          {/* ── How it works ── */}
-          <SectionLabel label="HOW IT WORKS" style={{ marginBottom: 12 }} />
-          <View style={styles.stepsContainer}>
-            {STEPS.map((step, index) => (
-              <StepItem
-                key={step.num}
-                step={step}
-                isLast={index === STEPS.length - 1}
+            {/* ── Rewards ── */}
+            <SectionLabel label="YOUR REWARDS" style={{ marginBottom: 12 }} />
+            <View style={styles.rewardsGrid}>
+              {REWARDS.map((item, index) => (
+                <RewardCard key={index} item={item} />
+              ))}
+            </View>
+
+            {/* ── Stats ── */}
+            <SectionLabel label="YOUR STATS" style={{ marginBottom: 12 }} />
+            <View style={styles.statsRow}>
+              <StatCard num="3" label="Friends referred" />
+              <StatCard
+                num="₹150"
+                label="Total earned"
+                numColor={COLORS.yellow}
               />
-            ))}
-          </View>
-
-          {/* ── Rewards ── */}
-          <SectionLabel label="YOUR REWARDS" style={{ marginBottom: 12 }} />
-          <View style={styles.rewardsGrid}>
-            {REWARDS.map((item, index) => (
-              <RewardCard key={index} item={item} />
-            ))}
-          </View>
-
-          {/* ── Stats ── */}
-          <SectionLabel label="YOUR STATS" style={{ marginBottom: 12 }} />
-          <View style={styles.statsRow}>
-            <StatCard num="3" label="Friends referred" />
-            <StatCard
-              num="₹150"
-              label="Total earned"
-              numColor={COLORS.yellow}
-            />
-            <StatCard
-              num="₹50"
-              label="Pending credit"
-              numColor={COLORS.green}
-            />
-          </View>
-
-          {/* ── Referred Friends ── */}
-          <SectionLabel label="REFERRED FRIENDS" style={{ marginBottom: 0 }} />
-          <View style={styles.friendsCard}>
-            {FRIENDS.map((item, index) => (
-              <FriendItem
-                key={index}
-                item={item}
-                isLast={index === FRIENDS.length - 1}
+              <StatCard
+                num="₹50"
+                label="Pending credit"
+                numColor={COLORS.green}
               />
-            ))}
-          </View>
+            </View>
 
-          {/* ── T&C ── */}
-          <Text style={styles.tnc}>
-            Credits are applied after your friend completes their first booking.{' '}
-            <Text style={{ color: COLORS.yellow }}>T&C apply.</Text>
-          </Text>
-        </ScrollView>
-      </SafeAreaView>
+            {/* ── Referred Friends ── */}
+            <SectionLabel
+              label="REFERRED FRIENDS"
+              style={{ marginBottom: 0 }}
+            />
+            <View style={styles.friendsCard}>
+              {FRIENDS.map((item, index) => (
+                <FriendItem
+                  key={index}
+                  item={item}
+                  isLast={index === FRIENDS.length - 1}
+                />
+              ))}
+            </View>
+
+            {/* ── T&C ── */}
+            <Text style={styles.tnc}>
+              Credits are applied after your friend completes their first
+              booking. <Text style={{ color: COLORS.yellow }}>T&C apply.</Text>
+            </Text>
+          </ScrollView>
+        </SafeAreaView>
+      </LinearGradient>
     </>
   );
 };

@@ -24,17 +24,17 @@ const COLORS = {
 export const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: COLORS.bg,
+    // backgroundColor: COLORS.bg,
   },
 
-  // Header
-  header: {
-    backgroundColor: '#111111',
-    paddingHorizontal: 20,
-    paddingTop: Platform.OS === 'android' ? 8 : 8,
-    borderBottomWidth: 0.5,
-    borderBottomColor: COLORS.borderDim,
-  },
+//   // Header
+//   header: {
+//     backgroundColor: '#111111',
+//     paddingHorizontal: 20,
+//     paddingTop: Platform.OS === 'android' ? 8 : 8,
+//     borderBottomWidth: 0.5,
+//     borderBottomColor: COLORS.borderDim,
+//   },
   headerRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -70,7 +70,7 @@ export const styles = StyleSheet.create({
   // Scroll
   scroll: {
     flex: 1,
-    backgroundColor: COLORS.bg,
+    // backgroundColor: COLORS.bg,
   },
   scrollContent: {
     paddingBottom: 40,
@@ -96,8 +96,8 @@ export const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: COLORS.yellowBg,
-    borderWidth: 1,
+    // backgroundColor: COLORS.yellowBg,
+    // borderWidth: 1,
     borderColor: COLORS.yellow,
     alignItems: 'center',
     justifyContent: 'center',
@@ -120,7 +120,7 @@ export const styles = StyleSheet.create({
 
   // Code box
   codeBox: {
-    backgroundColor: COLORS.card,
+    // backgroundColor: COLORS.card,
     borderWidth: 0.5,
     borderColor: COLORS.border,
     borderRadius: 14,

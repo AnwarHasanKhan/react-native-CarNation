@@ -14,6 +14,7 @@ import { Colors } from '../../assets/Colors';
 import { navigate, replace } from '../../navigation/NavigationService';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCar, removeCar } from '../../redux/slice/carSlice';
+import LinearGradient from 'react-native-linear-gradient';
 
 const ListItem = React.memo(({ label, icon }) => (
   <View style={styles.listRow}>
@@ -65,231 +66,250 @@ const Profile = () => {
         hidden={false}
         translucent={false}
       />
-      <SafeAreaView style={{ flex: 1, backgroundColor: Colors.appBg }}>
-        <ScrollView style={{ flex: 1 }}>
-          <View style={styles.profileContainer}>
-            <View style={styles.dp}>
-              <Image
-                source={require('../../assets/icons/user.png')}
-                style={styles.profileImage}
-              />
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text
-                style={{
-                  color: Colors.textPrimary,
-                  fontSize: 16,
-                  fontWeight: '600',
-                }}
-              >
-                {userName}
-              </Text>
-              <Text style={{ color: Colors.textPrimary }}>{phoneNo}</Text>
-            </View>
-          </View>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              padding: 10,
-              gap: 10,
-            }}
-          >
-            <View style={{ flex: 2, gap: 10 }}>
-              <Text style={{ color: '#fff', fontSize: 18, fontWeight: '600' }}>
-                My Cars
-              </Text>
-              <View
-                style={{
-                  backgroundColor: Colors.card,
-                  borderRadius: 10,
-                  padding: 10,
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  gap: 10,
-                  alignItems: 'center',
-                }}
-              >
+      <LinearGradient
+        useAngle={true}
+        angle={15}
+        angleCenter={{ x: 0.1, y: 0.2 }}
+        colors={['#0A0A0A', '#121212', '#192f6a']}
+        style={{
+          flex: 1,
+        }}
+      >
+        <SafeAreaView
+          style={{
+            flex: 1,
+            // backgroundColor: Colors.appBg
+          }}
+        >
+          <ScrollView style={{ flex: 1 }}>
+            <View style={styles.profileContainer}>
+              <View style={styles.dp}>
                 <Image
-                  source={require('../../assets/icons/car.png')}
-                  style={{ height: 30, width: 30, tintColor: '#cdcdcd' }}
+                  source={require('../../assets/icons/user.png')}
+                  style={styles.profileImage}
                 />
-                <View style={{ flex: 1, gap: 5 }}>
-                  <Text
-                    style={{ color: Colors.textPrimary, fontWeight: '600' }}
-                  >
-                    {name}
-                  </Text>
-                  <Text
-                    style={{ color: Colors.textPrimary, fontWeight: '600' }}
-                  >
-                    License: {license}
-                  </Text>
-                  {isDefault && (
-                    <View
-                      style={{
-                        gap: 5,
-                        backgroundColor: Colors.primary,
-                        paddingHorizontal: 5,
-                        borderRadius: 5,
-                        alignSelf:'flex-start'
-                      }}
-                    >
-                      <Text style={{ color: Colors.appBg, fontWeight: '600' }}>
-                        Default
-                      </Text>
-                    </View>
-                  )}
-                </View>
-                <Pressable
-                  onPress={() => {
-                    dispatch(removeCar());
-                  }}
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text
                   style={{
-                    alignSelf: 'flex-start',
+                    color: Colors.textPrimary,
+                    fontSize: 16,
+                    fontWeight: '600',
+                  }}
+                >
+                  {userName}
+                </Text>
+                <Text style={{ color: Colors.textPrimary }}>{phoneNo}</Text>
+              </View>
+            </View>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                padding: 10,
+                gap: 10,
+              }}
+            >
+              <View style={{ flex: 2, gap: 10 }}>
+                <Text
+                  style={{ color: '#fff', fontSize: 18, fontWeight: '600' }}
+                >
+                  My Cars
+                </Text>
+                <View
+                  style={{
+                    backgroundColor: Colors.card,
+                    borderRadius: 10,
+                    padding: 10,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    gap: 10,
+                    alignItems: 'center',
                   }}
                 >
                   <Image
-                    source={require('../../assets/icons/close.png')}
-                    style={{
-                      height: 15,
-                      width: 15,
-                      tintColor: Colors.primary,
-                    }}
+                    source={require('../../assets/icons/car.png')}
+                    style={{ height: 30, width: 30, tintColor: '#cdcdcd' }}
                   />
-                </Pressable>
+                  <View style={{ flex: 1, gap: 5 }}>
+                    <Text
+                      style={{ color: Colors.textPrimary, fontWeight: '600' }}
+                    >
+                      {name}
+                    </Text>
+                    <Text
+                      style={{ color: Colors.textPrimary, fontWeight: '600' }}
+                    >
+                      License: {license}
+                    </Text>
+                    {isDefault && (
+                      <View
+                        style={{
+                          gap: 5,
+                          backgroundColor: Colors.primary,
+                          paddingHorizontal: 5,
+                          borderRadius: 5,
+                          alignSelf: 'flex-start',
+                        }}
+                      >
+                        <Text
+                          style={{ color: Colors.appBg, fontWeight: '600' }}
+                        >
+                          Default
+                        </Text>
+                      </View>
+                    )}
+                  </View>
+                  <Pressable
+                    onPress={() => {
+                      dispatch(removeCar());
+                    }}
+                    style={{
+                      alignSelf: 'flex-start',
+                    }}
+                  >
+                    <Image
+                      source={require('../../assets/icons/close.png')}
+                      style={{
+                        height: 15,
+                        width: 15,
+                        tintColor: Colors.primary,
+                      }}
+                    />
+                  </Pressable>
+                </View>
               </View>
-            </View>
-            <View style={{ flex: 1, alignItems: 'flex-end', gap: 10 }}>
-              <Text
-                style={{
-                  color: Colors.primary,
-                  fontSize: 16,
-                  fontWeight: '600',
-                }}
-              >
-                Add Vehicle
-              </Text>
-
-              <View
-                style={{
-                  borderRadius: 10,
-                  padding: 10,
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: 10,
-                  flex: 1,
-                  borderWidth: 1,
-                  borderColor: Colors.primary,
-                  borderStyle: 'dashed',
-                }}
-              >
-                <TouchableOpacity
+              <View style={{ flex: 1, alignItems: 'flex-end', gap: 10 }}>
+                <Text
                   style={{
-                    flex: 1,
-                    gap: 5,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                  onPress={() => {
-                    navigate('AddCarScreen');
+                    color: Colors.primary,
+                    fontSize: 16,
+                    fontWeight: '600',
                   }}
                 >
-                  <Text
-                    style={{ color: Colors.textPrimary, fontWeight: '600' }}
+                  Add Vehicle
+                </Text>
+
+                <View
+                  style={{
+                    borderRadius: 10,
+                    padding: 10,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: 10,
+                    flex: 1,
+                    borderWidth: 1,
+                    borderColor: Colors.primary,
+                    borderStyle: 'dashed',
+                  }}
+                >
+                  <TouchableOpacity
+                    style={{
+                      flex: 1,
+                      gap: 5,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    onPress={() => {
+                      navigate('AddCarScreen');
+                    }}
                   >
-                    +Add {'\n'}New Car
-                  </Text>
+                    <Text
+                      style={{ color: Colors.textPrimary, fontWeight: '600' }}
+                    >
+                      +Add {'\n'}New Car
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+            <View style={{ gap: 15, padding: 10, marginBottom: 5 }}>
+              <Text style={{ color: '#fff', fontSize: 18, fontWeight: '600' }}>
+                Quick Actions
+              </Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  flex: 1,
+                  justifyContent: 'space-evenly',
+                }}
+              >
+                <TouchableOpacity onPress={() => navigate('PackageScreen')}>
+                  <ListItem2
+                    label="Car Wash"
+                    icon={require('../../assets/icons/car-wash.png')}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigate('MyBookingScreen')}>
+                  <ListItem2
+                    label="My Booking"
+                    icon={require('../../assets/icons/sticky-notes.png')}
+                  />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigate('Subscription')}>
+                  <ListItem2
+                    label="Subscription"
+                    icon={require('../../assets/icons/insurance.png')}
+                  />
                 </TouchableOpacity>
               </View>
             </View>
-          </View>
-          <View style={{ gap: 15, padding: 10, marginBottom: 5 }}>
-            <Text style={{ color: '#fff', fontSize: 18, fontWeight: '600' }}>
-              Quick Actions
-            </Text>
-            <View
-              style={{
-                flexDirection: 'row',
-                flex: 1,
-                justifyContent: 'space-evenly',
-              }}
-            >
-              <TouchableOpacity onPress={() => navigate('PackageScreen')}>
-                <ListItem2
-                  label="Car Wash"
-                  icon={require('../../assets/icons/car-wash.png')}
+
+            <View style={{ flex: 1 }}>
+              <TouchableOpacity
+                style={styles.list}
+                onPress={() => navigate('EditProfileScreen')}
+              >
+                <ListItem
+                  label="Edit Profile"
+                  icon={require('../../assets/icons/edit-text.png')}
                 />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigate('MyBookingScreen')}>
-                <ListItem2
-                  label="My Booking"
-                  icon={require('../../assets/icons/sticky-notes.png')}
+              <TouchableOpacity
+                style={styles.list}
+                onPress={() => navigate('AddressScreen')}
+              >
+                <ListItem
+                  label="Addresses"
+                  icon={require('../../assets/icons/pin.png')}
                 />
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => navigate('Subscription')}>
-                <ListItem2
-                  label="Subscription"
-                  icon={require('../../assets/icons/insurance.png')}
+              <TouchableOpacity style={styles.list}>
+                <ListItem
+                  label="Payment Methods"
+                  icon={require('../../assets/icons/wallet.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.list}>
+                <ListItem
+                  label="Notification"
+                  icon={require('../../assets/icons/notification.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.list}
+                onPress={() => navigate('HelpScreen')}
+              >
+                <ListItem
+                  label="Help"
+                  icon={require('../../assets/icons/help.png')}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.list}
+                onPress={() => replace('SignIn', { replace: true })}
+              >
+                <ListItem
+                  label="Logout"
+                  icon={require('../../assets/icons/exit.png')}
                 />
               </TouchableOpacity>
             </View>
-          </View>
-
-          <View style={{ flex: 1 }}>
-            <TouchableOpacity
-              style={styles.list}
-              onPress={() => navigate('EditProfileScreen')}
-            >
-              <ListItem
-                label="Edit Profile"
-                icon={require('../../assets/icons/edit-text.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.list}
-              onPress={() => navigate('AddressScreen')}
-            >
-              <ListItem
-                label="Addresses"
-                icon={require('../../assets/icons/pin.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.list}>
-              <ListItem
-                label="Payment Methods"
-                icon={require('../../assets/icons/wallet.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.list}>
-              <ListItem
-                label="Notification"
-                icon={require('../../assets/icons/notification.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.list}
-              onPress={() => navigate('HelpScreen')}
-            >
-              <ListItem
-                label="Help"
-                icon={require('../../assets/icons/help.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.list}
-              onPress={() => replace('SignIn', { replace: true })}
-            >
-              <ListItem
-                label="Logout"
-                icon={require('../../assets/icons/exit.png')}
-              />
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
+          </ScrollView>
+        </SafeAreaView>
+      </LinearGradient>
     </>
   );
 };
